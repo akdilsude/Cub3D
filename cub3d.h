@@ -13,6 +13,55 @@
 #ifndef CUB3D
 # define CUB3D
 
+# include "libft/libft.h"
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h> 
+# include <stdbool.h>
+
+typedef struct s_control
+{
+	int	is_no;
+	int	is_so;
+	int	is_we;
+	int	is_ea;
+	int	is_floor;
+	int	is_ceiling;
+}	t_control;
+
+typedef struct s_game
+{
+	int		fd;
+	int		x;
+	int		y;
+	int		player_x;
+	int		player_y;
+	char	*line_map;
+	char	**map;
+
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	t_control	control;
+
+}	t_game;
+
+
+void	name_control(char *str, t_game *list);
+void	game_edit(t_game *list);
+int	is_only_spaces(char *str);
+
+
+
+
+
+
+
+
+
+
+
 
 
 #endif
