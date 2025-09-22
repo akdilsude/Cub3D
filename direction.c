@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   direction.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:23:45 by sakdil            #+#    #+#             */
-/*   Updated: 2025/09/22 16:49:37 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/09/22 18:44:20 by segunes          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,7 +16,7 @@ bool	handle_no(t_game *game, char *line)
 {
 	if (game->control.is_no)
 		return (printf("error: Duplicate NO identifier.\n"), false);
-	game->north = //parse_path(line);
+	game->north = find_path(line);
 	if (!game->north)
 		return (printf("error: Invalid NO texture path.\n"), false);
 	game->control.is_no = 1;
@@ -27,7 +27,7 @@ bool	handle_so(t_game *game, char *line)
 {
 	if (game->control.is_so)
 		return (printf("error: Duplicate NO identifier.\n"), false);
-	game->south = //parse_path(line);
+	game->south = find_path(line);
 	if (!game->south)
 		return (printf("error: Invalid NO texture path.\n"), false);
 	game->control.is_no = 1;
@@ -37,7 +37,7 @@ bool	handle_we(t_game *game, char *line)
 {
 	if (game->control.is_we)
 		return (printf("error: Duplicate NO identifier.\n"), false);
-	game->west = //parse_path(line);
+	game->west = find_path(line);
 	if (!game->west)
 		return (printf("error: Invalid NO texture path.\n"), false);
 	game->control.is_we = 1;
@@ -48,14 +48,14 @@ bool	handle_ea(t_game *game, char *line)
 {
 	if (game->control.is_ea)
 		return (printf("error: Duplicate NO identifier.\n"), false);
-	game->east = //parse_path(line);
+	game->east = find_path(line);
 	if (!game->east)
 		return (printf("error: Invalid NO texture path.\n"), false);
 	game->control.is_ea = 1;
 	return (true);
 }
 
-bool	handle_floor(t_game *g, char *line)
+bool	handle_floor(t_game *g)
 {
 	if (g->control.is_floor)
 		return (printf("error: Duplicate F identifier.\n"), false);
@@ -63,7 +63,7 @@ bool	handle_floor(t_game *g, char *line)
 	return (true);
 }
 
-bool	handle_ceiling(t_game *g, char *line)
+bool	handle_ceiling(t_game *g)
 {
 	if (g->control.is_ceiling)
 		return (printf("error: Duplicate C identifier.\n"), false);

@@ -1,7 +1,7 @@
 NAME = cub3D
 
 LIBFT = libft/libft.a
-SRCS = main.c
+SRCS = frees.c direction.c map_control.c parse.c  utils.c
 OBJS = $(SRCS:.c=.o)
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror

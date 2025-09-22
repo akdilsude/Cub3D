@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:23:55 by sakdil            #+#    #+#             */
-/*   Updated: 2025/09/22 15:23:58 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/09/22 18:43:59 by segunes          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "cub3d.h"
 
-void	game_edit(t_game *list)
-{
+// void	game_edit(t_game *list)
+// {
 
-}
+// }
