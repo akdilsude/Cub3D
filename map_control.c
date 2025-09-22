@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   map_control.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:14 by sakdil            #+#    #+#             */
-/*   Updated: 2025/09/22 18:45:44 by segunes          ###   ########.fr       */
+/*   Updated: 2025/09/22 19:39:11 by sakdil           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -27,7 +27,7 @@ void	name_control(char *str, t_game *list)
 	if ((str[i] == '.' && str[i - 1] == '/')
 		|| (ft_strcmp(str + i, ".cub") == 1))
 	{
-		write(1, "error: Invalid map file extension.\n", 34);
+		write(1, "Error\nInvalid map file extension.\n", 34);
 		free_exit(list);
 	}
 }
@@ -124,10 +124,8 @@ static void	empty_line_control(char **line, int start, int line_count, t_game *g
 void	open_map(char *argv, t_game *list)
 {
 	char	**lines;
-	int		line_count;
-	int		map_start;
 
-	line_count = 0;
+
 	list->fd = open(argv, O_RDONLY);
 	if (list->fd < 0)
 	{
@@ -148,16 +146,28 @@ void	open_map(char *argv, t_game *list)
 		double_free(lines);
 		free_exit(list);
 	}
-	while (lines[line_count])
-		line_count;
-	map_start = control_identifier(lines, line_count, list);
- 	if (map_start < 0)
+	while (lines[list->line_count])
+		list->line_count;
+	list->map_start = control_identifier(lines, list->line_count, list);
+ 	if (list->map_start < 0)
 	{
 		double_free(lines);
 		free_exit(list);
 	}
-	empty_line_control(lines, map_start, line_count, list);
-
+	empty_line_control(lines, list->map_start, list->line_count, list);
+	list->y = list->line_count - list->map_start;
+	if (list->y <= 0)
+	{
+		printf("Error\nNo map found (bak).\n");
+		free_exit(list);
+	}
+	list->map = build_map(lines, list);
+	if (!list->map)
+	{
+		printf("Error\nMap data failed.\n");
+		double_free(lines);
+		free_exit(list);
+	}
 	//MAP 1 lerle mi çevrili?
 	// mapte boşluk tab var mı? olmayan karakter
 	

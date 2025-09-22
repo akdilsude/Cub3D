@@ -1,21 +1,21 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:53:07 by segunes           #+#    #+#             */
-/*   Updated: 2025/09/22 18:47:29 by segunes          ###   ########.fr       */
+/*   Updated: 2025/09/22 19:49:27 by sakdil           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
-char *validate_path(char *path)
+char	*validate_path(char *path)
 {
-	int fd;
-	int len;
+	int	fd;
+	int	len;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -35,10 +35,10 @@ char *validate_path(char *path)
 	return path;
 }
 
-char *find_path(char *input)
+char	*find_path(char *input)
 {
-	int i;
-	char *path;
+	int		i;
+	char	*path;
 
 	i = 0;
 	if (!input)

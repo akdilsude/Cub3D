@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/09/22 18:43:15 by segunes          ###   ########.fr       */
+/*   Updated: 2025/09/22 19:48:51 by sakdil           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef CUB3D
 # define CUB3D
@@ -36,6 +36,8 @@ typedef struct s_game
 	int		y;
 	int		player_x;
 	int		player_y;
+	int		map_start;
+	int		line_count;
 	char	*line_map;
 	char	**map;
 
@@ -50,17 +52,9 @@ typedef struct s_game
 
 void	name_control(char *str, t_game *list);
 void	game_edit(t_game *list);
-int	is_only_spaces(char *str);
-char *find_path(char *input);
-
-
-
-
-
-
-
-
-
+int		is_only_spaces(char *str);
+char	*find_path(char *input);
+void	**build_map(char **line, t_game * game);
 
 
 

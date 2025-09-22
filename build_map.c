@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frees.c                                            :+:      :+:    :+:   */
+/*   build_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 15:23:55 by sakdil            #+#    #+#             */
-/*   Updated: 2025/09/22 19:49:43 by sakdil           ###   ########.fr       */
+/*   Created: 2025/09/22 16:59:12 by sakdil            #+#    #+#             */
+/*   Updated: 2025/09/22 18:09:03 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	game_edit(t_game *game)
+void	**build_map(char **line, t_game * game)
 {
-	game->line_count = 0;
+	int	x;
+	int	y;
+
+	
 }
