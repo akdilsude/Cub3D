@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/09/22 19:48:51 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/09/23 14:42:46 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ typedef struct s_control
 typedef struct s_game
 {
 	int		fd;
-	int		x;
+	int		x; //kullanmıyorum şimdilik
 	int		y;
 	int		player_x;
 	int		player_y;
+	char	player_direc;
 	int		map_start;
 	int		line_count;
 	char	*line_map;

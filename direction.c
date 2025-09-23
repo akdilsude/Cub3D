@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   direction.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:23:45 by sakdil            #+#    #+#             */
-/*   Updated: 2025/09/22 19:42:47 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/09/23 13:13:58 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,3 +70,5 @@ bool	handle_ceiling(t_game *g)
 	g->control.is_ceiling = 1;
 	return (true);
 }
+
+//Mapteki N,S,E,W oyuncunun başladığı yer olacak ve nereden baktığını belirtecek.

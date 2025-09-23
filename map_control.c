@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_control.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:14 by sakdil            #+#    #+#             */
-/*   Updated: 2025/09/22 19:39:11 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/09/23 21:14:09 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,81 @@ static void	empty_line_control(char **line, int start, int line_count, t_game *g
 	}
 }
 
+static void	error_msg_player(int count, t_game *game)
+{
+	if (count != 1)
+	{
+		if (count == 0)
+			printf("Error\nNo player start (N/S/W/E) found.\n");
+		else
+			printf("Error\nMultiple player starts (N/S/W/E) found.\n");
+		free_exit(game);
+	}
+}
+
+static void	player_is_one(char **line, t_game *game)
+{
+	int	y;
+	int	x;
+	int	len;
+	int	count;
+
+	count = 0;
+	y = game->map_start;
+	while (y < game->line_count)
+	{
+		x = 0;
+		len = (int)ft_strlen(line[y]);
+		while (x < len)
+		{
+			if (line[y][x] == 'N' || line[y][x] == 'S' || line[y][x] == 'W' || line[y][x] == 'E')
+			{
+				count++;
+				game->player_x = x;
+				game->player_y = y - game->map_start;
+				game->player_direc = line[y][x];
+			}
+			x++;
+		}
+		y++;
+	}
+	error_msg_player(count, game);
+}
+//YAPILIYOR
+static void	check_map(char **line, t_game *game)
+{
+	int	x;
+	int	y;
+	int	len;
+
+	y = 0;
+	while (y < game->y)
+	{
+		x = 0;
+		len = (int)ft_strlen(line[game->map_start + y]);
+		while (x < len)
+		{
+			if (!(line[game->map_start + y][x] == '0' ||
+				line[game->map_start + y][x] == '1' ||
+				line[game->map_start + y][x] == ' ' ||
+				line[game->map_start + y][x] == 'N' ||
+				line[game->map_start + y][x] == 'S' ||
+				line[game->map_start + y][x] == 'W' ||
+				line[game->map_start + y][x] == 'E'))
+			{
+				printf("Error\nMap contains invalid characters.\n");
+				free_exit(game);
+			}
+			if (line[game->map_start + y][x] == '0' ||
+				line[game->map_start + y][x] == 'N' ||
+				line[game->map_start + y][x] == 'S' ||
+				line[game->map_start + y][x] == 'W' ||
+				line[game->map_start + y][x] == 'E')
+		}
+		y++;
+	}
+}
+
 void	open_map(char *argv, t_game *list)
 {
 	char	**lines;
@@ -147,7 +222,7 @@ void	open_map(char *argv, t_game *list)
 		free_exit(list);
 	}
 	while (lines[list->line_count])
-		list->line_count;
+		list->line_count++;
 	list->map_start = control_identifier(lines, list->line_count, list);
  	if (list->map_start < 0)
 	{
@@ -155,31 +230,15 @@ void	open_map(char *argv, t_game *list)
 		free_exit(list);
 	}
 	empty_line_control(lines, list->map_start, list->line_count, list);
+	player_is_one(lines, list);
 	list->y = list->line_count - list->map_start;
 	if (list->y <= 0)
 	{
 		printf("Error\nNo map found (bak).\n");
 		free_exit(list);
 	}
+	//CHECK_MAP YAPILIYOR
+	check_map(lines, list);
 	list->map = build_map(lines, list);
-	if (!list->map)
-	{
-		printf("Error\nMap data failed.\n");
-		double_free(lines);
-		free_exit(list);
-	}
-	//MAP 1 lerle mi çevrili?
-	// mapte boşluk tab var mı? olmayan karakter
-	
-	// map_controller(list);
-	// empty_line_control(list);
-	// list->map = ft_split(list->line_map, '\n');
-	// list->temp = ft_split(list->line_map, '\n');
-	// if (!list->map || !list->temp)
-	// {
-	// 	write(1, "Error\nFailed map data.\n", 23);
-	// 	free_exit(list);
-	// }
-	// continue_open_map(list);
-	//Map dosyada en sonda olmalı; map’ten sonra header elemanı yok.
+	double_free(lines);
 }

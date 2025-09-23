@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:23:55 by sakdil            #+#    #+#             */
-/*   Updated: 2025/09/22 19:49:43 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/09/23 13:56:01 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,6 @@
 void	game_edit(t_game *game)
 {
 	game->line_count = 0;
+	game->player_direc = 0;
+	game->map_start = 0;
 }
