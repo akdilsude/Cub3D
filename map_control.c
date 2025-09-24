@@ -1,20 +1,20 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   map_control.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:14 by sakdil            #+#    #+#             */
-/*   Updated: 2025/09/23 21:14:09 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/09/24 17:10:37 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
-void	name_control(char *str, t_game *list)
+void name_control(char *str, t_game *list)
 {
-	int		i;
+	int i;
 
 	i = 0;
 	while (str[i])
@@ -22,10 +22,9 @@ void	name_control(char *str, t_game *list)
 		if (str[i] != '.')
 			i++;
 		else
-			break ;
+			break;
 	}
-	if ((str[i] == '.' && str[i - 1] == '/')
-		|| (ft_strcmp(str + i, ".cub") == 1))
+	if ((str[i] == '.' && str[i - 1] == '/') || (ft_strcmp(str + i, ".cub") == 1))
 	{
 		write(1, "Error\nInvalid map file extension.\n", 34);
 		free_exit(list);
@@ -44,17 +43,14 @@ static void start_control_value(t_game *game)
 
 static int is_all_set(t_game *game)
 {
-	if (!game->control.is_no || !game->control.is_so
-		|| !game->control.is_we || !game->control.is_ea
-		|| !game->control.is_floor || !game->control.is_ceiling)
+	if (!game->control.is_no || !game->control.is_so || !game->control.is_we || !game->control.is_ea || !game->control.is_floor || !game->control.is_ceiling)
 		return (1);
 	return (0);
-
 }
 
 static int control_identifier(char **lines, int line_count, t_game *game)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	start_control_value(game);
@@ -62,7 +58,7 @@ static int control_identifier(char **lines, int line_count, t_game *game)
 	{
 		if (is_only_spaces(lines[i]))
 			i++;
-		else if(!ft_strncmp(lines[i], "NO", 3))
+		else if (!ft_strncmp(lines[i], "NO", 3))
 		{
 			if (handle_no(game, lines[i]) == false)
 				return (-1);
@@ -99,18 +95,18 @@ static int control_identifier(char **lines, int line_count, t_game *game)
 			i++;
 		}
 		else
-			break ;
+			break;
 	}
 	if (is_all_set(game))
 		return (printf("Error\nIdentifiers are missing.\n"), -1);
 	if (i >= line_count)
 		return (printf("Error\nMap not found.\n"), -1);
-	return (i); //mapin başladığı satır = map_start
+	return (i); // mapin başladığı satır = map_start
 }
 
-static void	empty_line_control(char **line, int start, int line_count, t_game *game)
+static void empty_line_control(char **line, int start, int line_count, t_game *game)
 {
-	while(start < line_count)
+	while (start < line_count)
 	{
 		if (line[start] == NULL || is_only_spaces(line[start]))
 		{
@@ -121,7 +117,7 @@ static void	empty_line_control(char **line, int start, int line_count, t_game *g
 	}
 }
 
-static void	error_msg_player(int count, t_game *game)
+static void error_msg_player(int count, t_game *game)
 {
 	if (count != 1)
 	{
@@ -133,12 +129,12 @@ static void	error_msg_player(int count, t_game *game)
 	}
 }
 
-static void	player_is_one(char **line, t_game *game)
+static void player_is_one(char **line, t_game *game)
 {
-	int	y;
-	int	x;
-	int	len;
-	int	count;
+	int y;
+	int x;
+	int len;
+	int count;
 
 	count = 0;
 	y = game->map_start;
@@ -161,12 +157,12 @@ static void	player_is_one(char **line, t_game *game)
 	}
 	error_msg_player(count, game);
 }
-//YAPILIYOR
-static void	check_map(char **line, t_game *game)
+// YAPILIYOR
+static void check_map(char **line, t_game *game)
 {
-	int	x;
-	int	y;
-	int	len;
+	int x;
+	int y;
+	int len;
 
 	y = 0;
 	while (y < game->y)
@@ -176,12 +172,12 @@ static void	check_map(char **line, t_game *game)
 		while (x < len)
 		{
 			if (!(line[game->map_start + y][x] == '0' ||
-				line[game->map_start + y][x] == '1' ||
-				line[game->map_start + y][x] == ' ' ||
-				line[game->map_start + y][x] == 'N' ||
-				line[game->map_start + y][x] == 'S' ||
-				line[game->map_start + y][x] == 'W' ||
-				line[game->map_start + y][x] == 'E'))
+				  line[game->map_start + y][x] == '1' ||
+				  line[game->map_start + y][x] == ' ' ||
+				  line[game->map_start + y][x] == 'N' ||
+				  line[game->map_start + y][x] == 'S' ||
+				  line[game->map_start + y][x] == 'W' ||
+				  line[game->map_start + y][x] == 'E'))
 			{
 				printf("Error\nMap contains invalid characters.\n");
 				free_exit(game);
@@ -191,43 +187,69 @@ static void	check_map(char **line, t_game *game)
 				line[game->map_start + y][x] == 'S' ||
 				line[game->map_start + y][x] == 'W' ||
 				line[game->map_start + y][x] == 'E')
+			{
+				if ((line[game->map_start + y - 1][x] == ' ' ||
+					 line[game->map_start + y + 1][x] == ' ' ||
+					 line[game->map_start + y][x + 1] == ' ' ||
+					 line[game->map_start + y][x - 1] == ' '))
+
+				{
+					printf("Error\n");
+					free_exit(game);
+				}
+				if (y == 0 || y == game->y - 1 || x == 0 || x == len - 1)
+				{
+					printf("Error\n");
+					free_exit(game);
+				}
+				if (x + 1 < len && line[game->map_start + y][x + 1] == ' ')//her yeri kendi içinde kıyaslıyacak 
+				{
+					printf("Error\n");
+					free_exit(game);
+				}
+				if (x - 1 >= 0 && line[game->map_start + y][x - 1] == ' ')
+				{
+					printf("Error\n");
+					free_exit(game);
+				}
+			}
+			x++;
 		}
 		y++;
 	}
 }
 
-void	open_map(char *argv, t_game *list)
+void open_map(char *argv, t_game *list)
 {
-	char	**lines;
-
+	char **lines;
 
 	list->fd = open(argv, O_RDONLY);
 	if (list->fd < 0)
 	{
 		write(1, "Error\nCannot open map file.\n", 28);
-		free_exit(list);
+		// free_exit(list);
 	}
-	list->line_map = ft_get_read(list->fd);
+	list->line_map = ft_get_read(list->fd); //????????????????????
 	close(list->fd);
 	if (!list->line_map)
 	{
 		write(1, "Error\nFailed to read map file.\n", 31);
-		free_exit(list);
+		// free_exit(list);
 	}
 	lines = ft_split(list->line_map, '\n');
 	if (!lines || !lines[0])
 	{
 		write(1, "Error\nEmpty file.\n", 18);
-		double_free(lines);
-		free_exit(list);
+		// double_free(lines);
+		// free_exit(list);
 	}
 	while (lines[list->line_count])
 		list->line_count++;
 	list->map_start = control_identifier(lines, list->line_count, list);
- 	if (list->map_start < 0)
+	if (list->map_start < 0)
 	{
-		double_free(lines);
-		free_exit(list);
+		// double_free(lines);
+		// free_exit(list);
 	}
 	empty_line_control(lines, list->map_start, list->line_count, list);
 	player_is_one(lines, list);
@@ -237,8 +259,8 @@ void	open_map(char *argv, t_game *list)
 		printf("Error\nNo map found (bak).\n");
 		free_exit(list);
 	}
-	//CHECK_MAP YAPILIYOR
+	// CHECK_MAP YAPILIYOR
 	check_map(lines, list);
 	list->map = build_map(lines, list);
-	double_free(lines);
+	// double_free(lines);
 }

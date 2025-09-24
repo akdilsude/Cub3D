@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/09/23 14:42:46 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/09/24 13:41:41 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef CUB3D
 # define CUB3D
@@ -56,6 +56,7 @@ void	game_edit(t_game *list);
 int		is_only_spaces(char *str);
 char	*find_path(char *input);
 void	**build_map(char **line, t_game * game);
+void	open_map(char *argv, t_game *list);
 
 
 
