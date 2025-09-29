@@ -5,17 +5,24 @@ SRCS	=	build_map.c		\
 			map_control.c 	\
 			parse.c  		\
 			utils.c			\
+			get_next_line.c \
+			get_next_line_utils.c \
+			main.c \
 
 OBJS	=	$(SRCS:.c=.o)
 RM		=	rm -f
 CFLAGS	=	-Wall -Wextra -Werror
 CC		=	cc
-LIBFT	=	libft/libft.a
+LIBFT_DIR		= 	./libft
+LIBFT 			= 	$(LIBFT_DIR)/libft.a
 
-all: $(NAME)
+all: $(LIBFT) $(NAME)
 
-$(NAME): $(OBJS)
-		$(CC) $(OBJS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+		$(CC) $(OBJS) $(LIBFT) -o $(NAME)
+
+$(LIBFT):
+		$(MAKE) -C $(LIBFT_DIR)
 
 clean: 
 	$(RM) $(OBJS)

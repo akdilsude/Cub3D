@@ -6,7 +6,7 @@
 /*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/09/24 13:41:41 by segunes          ###   ########.fr       */
+/*   Updated: 2025/09/29 14:47:42 by segunes          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,6 +18,10 @@
 # include <fcntl.h>
 # include <stdio.h> 
 # include <stdbool.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+#endif
 
 typedef struct s_control
 {
@@ -51,13 +55,22 @@ typedef struct s_game
 }	t_game;
 
 
-void	name_control(char *str, t_game *list);
+void	name_control(char *str);
 void	game_edit(t_game *list);
 int		is_only_spaces(char *str);
 char	*find_path(char *input);
-void	**build_map(char **line, t_game * game);
+char	**build_map(char **line, t_game * game);
 void	open_map(char *argv, t_game *list);
-
+bool	handle_floor(t_game *g);
+bool	handle_ea(char *line, t_game *game);
+bool	handle_ceiling(t_game *g);
+bool	handle_we(char *line, t_game *game);
+bool	handle_so(char *line, t_game *game);
+bool	handle_no(char *line, t_game *game);
+char	*new(char *str);
+char	*line(char *str);
+char	*get_next_line(int fd);
+char	*join(char *s1, char *s2);
 
 
 

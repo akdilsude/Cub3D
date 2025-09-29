@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:53:07 by segunes           #+#    #+#             */
-/*   Updated: 2025/09/22 19:49:27 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/09/29 17:39:06 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -51,8 +51,13 @@ char	*find_path(char *input)
 	{
 		path = ft_strdup(&input[i + 1]);
 		//free unutma
-		validate_path(path);
+		if (!validate_path(path)) // validate_path boolean döndürüyorsa
+        {
+            free(path);
+            return NULL;
+        }
+        return path;
 	}
 	else
-		return (1); // hata
+		return(NULL) ; // hata
 }
