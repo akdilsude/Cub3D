@@ -6,7 +6,7 @@
 /*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:36:45 by segunes           #+#    #+#             */
-/*   Updated: 2025/09/29 14:43:04 by segunes          ###   ########.fr       */
+/*   Updated: 2025/09/30 15:19:45 by segunes          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,7 +21,7 @@ char	*ft_buffer(int fd, char *str)
 	if (!buffer)
 		return (NULL);
 	i = 1;
-	while (ft_strchr(str, '\n') == 0 && i != 0)
+	while ((!str || ft_strchr(str, '\n') == 0) && i != 0)
 	{
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i == -1)
@@ -42,7 +42,7 @@ char	*get_next_line(int fd)
 	static char	*str;
 	char		*ptr;
 
-	if (fd < 0 && BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	str = ft_buffer(fd, str);
 	if (!str)

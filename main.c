@@ -6,7 +6,7 @@
 /*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:57:15 by segunes           #+#    #+#             */
-/*   Updated: 2025/09/29 17:30:12 by segunes          ###   ########.fr       */
+/*   Updated: 2025/09/30 14:54:46 by segunes          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	// 		write(1, "Error\nMap size exceeds limits (max 59x32).\n", 43);
 	// 		free_exit(list);
 	// 	}
-	// 	game_start(list);
+	//game_start(list);
 	// }
 	// else
 	// {

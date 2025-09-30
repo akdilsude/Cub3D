@@ -6,7 +6,7 @@
 /*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:14 by sakdil            #+#    #+#             */
-/*   Updated: 2025/09/29 17:24:42 by segunes          ###   ########.fr       */
+/*   Updated: 2025/09/30 15:42:14 by segunes          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,10 +24,10 @@ void name_control(char *str)
 		else
 			break;
 	}
-	if ((str[i] == '.' && str[i - 1] == '/') || (ft_strcmp(str + i, ".cub") == 1))
+	if ((str[i] == '.' && str[i - 1] == '/') || (ft_strcmp(str + i, ".cub") != 0))
 	{
 		write(1, "Error\nInvalid map file extension.\n", 34);
-		//free_exit(list);
+		// free_exit(list);
 	}
 }
 
@@ -56,27 +56,28 @@ static int control_identifier(char **lines, int line_count, t_game *game)
 	start_control_value(game);
 	while (i < line_count)
 	{
+
 		if (is_only_spaces(lines[i]))
 			i++;
-		else if (!ft_strncmp(lines[i], "NO", 3))
+		else if (ft_strncmp(lines[i], "NO", 3))
 		{
 			if (handle_no(lines[i], game) == false)
 				return (-1);
 			i++;
 		}
-		else if (!ft_strncmp(lines[i], "SO ", 3))
+		else if (ft_strncmp(lines[i], "SO ", 3))
 		{
 			if (handle_so(lines[i], game) == false)
 				return (-1);
 			i++;
 		}
-		else if (!ft_strncmp(lines[i], "WE ", 3))
+		else if (ft_strncmp(lines[i], "WE ", 3))
 		{
 			if (handle_we(lines[i], game) == false)
 				return (-1);
 			i++;
 		}
-		else if (!ft_strncmp(lines[i], "EA ", 3))
+		else if (ft_strncmp(lines[i], "EA ", 3))
 		{
 			if (handle_ea(lines[i], game) == false)
 				return (-1);
@@ -98,7 +99,9 @@ static int control_identifier(char **lines, int line_count, t_game *game)
 			break;
 	}
 	if (is_all_set(game))
+	{
 		return (printf("Error\nIdentifiers are missing.\n"), -1);
+	}
 	if (i >= line_count)
 		return (printf("Error\nMap not found.\n"), -1);
 	return (i); // mapin başladığı satır = map_start
@@ -111,7 +114,7 @@ static void empty_line_control(char **line, int start, int line_count)
 		if (line[start] == NULL || is_only_spaces(line[start]))
 		{
 			printf("Error\nThere is empty space on the map.");
-			//free_exit(game);
+			// free_exit(game);
 		}
 		start++;
 	}
@@ -125,7 +128,7 @@ static void error_msg_player(int count)
 			printf("Error\nNo player start (N/S/W/E) found.\n");
 		else
 			printf("Error\nMultiple player starts (N/S/W/E) found.\n");
-		//free_exit(game);
+		// free_exit(game);
 	}
 }
 
@@ -180,7 +183,7 @@ static void check_map(char **line, t_game *game)
 				  line[game->map_start + y][x] == 'E'))
 			{
 				printf("Error\nMap contains invalid characters.\n");
-				//free_exit(game);
+				// free_exit(game);
 			}
 			if (line[game->map_start + y][x] == '0' ||
 				line[game->map_start + y][x] == 'N' ||
@@ -188,50 +191,47 @@ static void check_map(char **line, t_game *game)
 				line[game->map_start + y][x] == 'W' ||
 				line[game->map_start + y][x] == 'E')
 			{
-				if ((line[game->map_start + y - 1][x] == ' ' ||
-					 line[game->map_start + y + 1][x] == ' ' ||
-					 line[game->map_start + y][x + 1] == ' ' ||
-					 line[game->map_start + y][x - 1] == ' '))
+				if ((y > 0 && line[game->map_start + y - 1][x] == ' ') ||
+					(y + 1 < game->y && line[game->map_start + y + 1][x] == ' ') ||
+					(x + 1 < len && line[game->map_start + y][x + 1] == ' ') ||
+					(x > 0 && line[game->map_start + y][x - 1] == ' '))
 
 				{
 					printf("Error\n");
-					
-					//free_exit(game);
+
+					// free_exit(game);
 				}
 				if (y == 0 || y == game->y - 1 || x == 0 || x == len - 1)
 				{
 					printf("Error\n");
-					//free_exit(game);
+					// free_exit(game);
 				}
-				if (y > 0 && x < (int)ft_strlen(line[game->map_start + y - 1])
-					&& line[game->map_start + y - 1][x] == ' ')
-					//Eğer ilk satırdaysak (y == 0) yukarıya bakamayız çünkü yukarısı yok O yüzden y > 0 mı diye kontrol ediyoruz.
-					//bir yerde y deki karakter uzunlğu daha fazla olabilir ve diyelim ki x ile yukarıya baktık birinde var birinde yok
-					// 11111111
-					// 111             mesela böyle bir durum için
-					//ayrıca satır arasında space varsa sorun değil oyüzden onunda kontrolünü yapıyoruz
+				if (y > 0 && x < (int)ft_strlen(line[game->map_start + y - 1]) && line[game->map_start + y - 1][x] == ' ')
+				// Eğer ilk satırdaysak (y == 0) yukarıya bakamayız çünkü yukarısı yok O yüzden y > 0 mı diye kontrol ediyoruz.
+				// bir yerde y deki karakter uzunlğu daha fazla olabilir ve diyelim ki x ile yukarıya baktık birinde var birinde yok
+				//  11111111
+				//  111             mesela böyle bir durum için
+				// ayrıca satır arasında space varsa sorun değil oyüzden onunda kontrolünü yapıyoruz
 				{
 					printf("Error\nMap not closed (space above).\n");
-					//free_exit(game);
+					// free_exit(game);
 				}
 				// alt satır kontrolü
-				if (y + 1 < game->y
-					&& x < (int)ft_strlen(line[game->map_start + y + 1])
-					&& line[game->map_start + y + 1][x] == ' ')
-					//bu da aynı şekilde alt satır kontrolü alt satırda karakter varmı yokmu
+				if (y + 1 < game->y && x < (int)ft_strlen(line[game->map_start + y + 1]) && line[game->map_start + y + 1][x] == ' ')
+				// bu da aynı şekilde alt satır kontrolü alt satırda karakter varmı yokmu
 				{
 					printf("Error\nMap not closed (space below).\n");
-					//free_exit(game);
+					// free_exit(game);
 				}
-				if (x + 1 < len && line[game->map_start + y][x + 1] == ' ')//her yeri kendi içinde kıyaslıyacak 
+				if (x + 1 < len && line[game->map_start + y][x + 1] == ' ') // her yeri kendi içinde kıyaslıyacak
 				{
 					printf("Error\n");
-					//free_exit(game);
+					// free_exit(game);
 				}
 				if (x - 1 >= 0 && line[game->map_start + y][x - 1] == ' ')
 				{
 					printf("Error\n");
-					//free_exit(game);
+					// free_exit(game);
 				}
 			}
 			x++;
@@ -244,30 +244,50 @@ void open_map(char *argv, t_game *list)
 {
 	char **lines;
 	char *line;
-    int fd;
-    int count;
+	int fd;
+	int count;
 
-    fd = open(argv, O_RDONLY);
-    if (fd < 0)
+	// printf("argc = %s\n", argv);
+	// printf("argv[1] = %c\n", argv[1]);
+	fd = open(argv, O_RDONLY);
+	if (fd < 0)
 	{
 		write(1, "Error\nCannot open map file.\n", 28) /* free_exit(list) */;
-		 return ;
+		return;
 	}
 
-    // Önce lines dizisini ayarlıyoruz
-    lines = malloc(sizeof(char *) * 1000); // MAX_LINES yeterince büyük olmalı
-    if (!lines)
-        return; // malloc hatası
-    count = 0;
+	// Önce lines dizisini ayarlıyoruz
+	lines = malloc(sizeof(char *) * 10000); // MAX_LINES yeterince büyük olmalı
+	if (!lines)
+		return; // malloc hatası
+	count = 0;
 
-    // Dosyayı satır satır oku
-    while ((line = get_next_line(fd)) != NULL)
-    {
-        lines[count++] = line;
-    }
-    close(fd);
+	// line = get_next_line(fd);
+	// if (!line)
+	// {
+	// 	perror("get_next_line");
+	// 	return;
+	// }
 
-    list->line_count = count;
+	// // Dosyayı satır satır oku
+	// while (line)
+	// {
+	// 	lines[count++] = line;
+	// }
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		lines[count++] = line;
+	}
+	lines[count] = NULL;
+	close(fd);
+
+	if (count == 0)
+	{
+		printf("Error\nEmpty file.\n");
+		free(lines);
+		return;
+	}
+	list->line_count = count;
 
 	// list->fd = open(argv, O_RDONLY);
 	// if (list->fd < 0)
@@ -304,7 +324,7 @@ void open_map(char *argv, t_game *list)
 	if (list->y <= 0)
 	{
 		printf("Error\nNo map found (bak).\n");
-		//free_exit(list);
+		// free_exit(list);
 	}
 	// CHECK_MAP YAPILIYOR
 	check_map(lines, list);
