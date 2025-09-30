@@ -44,7 +44,9 @@ static void start_control_value(t_game *game)
 static int is_all_set(t_game *game)
 {
 	if (!game->control.is_no || !game->control.is_so || !game->control.is_we || !game->control.is_ea || !game->control.is_floor || !game->control.is_ceiling)
+	{
 		return (1);
+	}
 	return (0);
 }
 
@@ -57,27 +59,28 @@ static int control_identifier(char **lines, int line_count, t_game *game)
 	while (i < line_count)
 	{
 
-		if (is_only_spaces(lines[i]))
-			i++;
-		else if (ft_strncmp(lines[i], "NO", 3))
+		// if (is_only_spaces(lines[i])) //bak
+		// 	i++;
+		if (!ft_strncmp(lines[i], "NO", 2) && (lines[i][2] == ' ' || lines[i][2] == '\t'))
 		{
+			printf("hkhk");
 			if (handle_no(lines[i], game) == false)
 				return (-1);
 			i++;
 		}
-		else if (ft_strncmp(lines[i], "SO ", 3))
+		else if (!ft_strncmp(lines[i], "SO ", 2) && (lines[i][2] == ' ' || lines[i][2] == '\t'))
 		{
 			if (handle_so(lines[i], game) == false)
 				return (-1);
 			i++;
 		}
-		else if (ft_strncmp(lines[i], "WE ", 3))
+		else if (!ft_strncmp(lines[i], "WE ", 2) && (lines[i][2] == ' ' || lines[i][2] == '\t'))
 		{
 			if (handle_we(lines[i], game) == false)
 				return (-1);
 			i++;
 		}
-		else if (ft_strncmp(lines[i], "EA ", 3))
+		else if (!ft_strncmp(lines[i], "EA ", 2) && (lines[i][2] == ' ' || lines[i][2] == '\t'))
 		{
 			if (handle_ea(lines[i], game) == false)
 				return (-1);
@@ -100,6 +103,7 @@ static int control_identifier(char **lines, int line_count, t_game *game)
 	}
 	if (is_all_set(game))
 	{
+
 		return (printf("Error\nIdentifiers are missing.\n"), -1);
 	}
 	if (i >= line_count)

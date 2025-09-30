@@ -16,8 +16,12 @@ char *validate_path(char *path)
 {
 	int len;
 
-	// if (access(path, F_OK | R_OK) != 0)
-	// 	return (NULL);
+	if (access(path, F_OK | R_OK) != 0)
+	{
+		// printf("%s", path);
+		printf("jjj");
+		return (NULL);
+	}
 	if (ft_strlen(path) < 5)
 		return (NULL);
 	len = ft_strlen(path);
@@ -33,6 +37,7 @@ char *validate_path(char *path)
 char *find_path(char *input)
 {
 	int i;
+	int len;
 //	char *path;
 
 	i = 0;
@@ -42,14 +47,22 @@ char *find_path(char *input)
 		return (NULL); // hata
 	while (input[i] != ' ')
 		i++;
-	if (input[i + 1] == '.')
+	if (input[i + 1] == '.' || input[i + 1] == '/')
 	{
-		
+		i++;
+        char *path = &input[i]; // Yolun başlangıcı
 		//path = ft_strdup(&input[i + 3]);
 		// free unutma
-		if (validate_path(input) == NULL) // validate_path boolean döndürüyorsa
+		len = ft_strlen(path);
+		while (len > 0 && (path[len - 1] == ' ' || path[len - 1] == '\n' || path[len - 1] == '\r'))
+        {
+            path[len - 1] = '\0'; // Karakteri NULL ile değiştir
+            len--;
+        }
+		if (validate_path(path) == NULL) // validate_path boolean döndürüyorsa
 		{
 			printf("burascdsfı");
+
 			free(input);
 			return NULL;
 		}
@@ -58,3 +71,4 @@ char *find_path(char *input)
 	else
 		return (NULL); // hata
 }
+
