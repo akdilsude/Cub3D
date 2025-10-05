@@ -6,7 +6,7 @@
 /*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:14 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/05 07:16:00 by segunes          ###   ########.fr       */
+/*   Updated: 2025/10/05 07:58:16 by segunes          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -59,8 +59,6 @@ static int control_identifier(char **lines, int line_count, t_game *game)
 	while (i < line_count)
 	{
 
-		// if (is_only_spaces(lines[i])) //bak
-		// 	i++;
 		if (!ft_strncmp(lines[i], "NO", 2) && (lines[i][2] == ' ' || lines[i][2] == '\t'))
 		{
 			if (handle_no(lines[i], game) == false)
@@ -200,12 +198,13 @@ void	check_zero(char **lines, t_game *game)
 		while (x < cy_len)
 		{
 			c = lines[game->map_start + y][x];
+			//printf("%c",c);
 			if (c == '0' || check_nsew(c))
 			{
 		/* ÜST KONTROLÜ */
 				if (y == 0
 					|| x >= line_len(lines[game->map_start + y - 1])
-					|| lines[game->map_start + y - 1][x] == ' ')
+					|| lines[game->map_start + y - 1][x] == ' ' )
 				{
 					printf("Error\nMap not closed (above).\n");
 					free_error_exit(game);
@@ -413,6 +412,7 @@ void open_map(char *argv, t_game *list)
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		lines[count++] = line;
+		//tabs_to_spaces(lines[count - 1]);
 	}
 	lines[count] = NULL;
 	close(fd);

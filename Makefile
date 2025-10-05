@@ -26,9 +26,11 @@ $(LIBFT):
 
 clean: 
 	$(RM) $(OBJS)
+	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME) $(OBJS)
+	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
