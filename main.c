@@ -6,7 +6,7 @@
 /*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:57:15 by segunes           #+#    #+#             */
-/*   Updated: 2025/09/30 14:54:46 by segunes          ###   ########.fr       */
+/*   Updated: 2025/10/05 03:56:19 by segunes          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_game	*list;
 
+	printf("aaaaa");
 	list = (t_game *)malloc(sizeof(t_game));
 	if (!list)
 		return (write(1, "Error: Malloc failed\n", 21), 0);

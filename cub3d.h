@@ -6,7 +6,7 @@
 /*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/09/29 14:47:42 by segunes          ###   ########.fr       */
+/*   Updated: 2025/10/05 03:41:03 by segunes          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -71,7 +71,7 @@ char	*new(char *str);
 char	*line(char *str);
 char	*get_next_line(int fd);
 char	*join(char *s1, char *s2);
-
+void free_error_exit(t_game *game);
 
 
 #endif
