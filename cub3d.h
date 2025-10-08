@@ -6,7 +6,7 @@
 /*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/10/08 10:11:44 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/08 10:43:08 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	*line(char *str);
 char	*get_next_line(int fd);
 char	*join(char *s1, char *s2);
 void free_error_exit(t_game *game);
+int	line_len(char *str);
 
 
 #endif

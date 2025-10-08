@@ -6,7 +6,7 @@
 /*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:19 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/08 09:11:40 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/08 11:08:18 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int is_only_spaces(char *str)
 {
 	while (*str)
 	{
-		if (*str != ' ' && *str != '\t')
+		if (*str != ' ' && *str != '\t' && *str != '\n')
 			return (0);
 		str++;
 	}
