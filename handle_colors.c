@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   handle_colors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 15:24:19 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/08 09:11:40 by sakdil           ###   ########.fr       */
+/*   Created: 2025/10/08 10:13:45 by sakdil            #+#    #+#             */
+/*   Updated: 2025/10/08 10:14:26 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int is_only_spaces(char *str)
+bool	handle_floor(t_game *game)
 {
-	while (*str)
-	{
-		if (*str != ' ' && *str != '\t')
-			return (0);
-		str++;
-	}
-	return (1);
+	if (game->control.is_floor)
+		return (printf("Error\nDuplicate F identifier.\n"), false);
+	game->control.is_floor = 1;
+	return (true);
+}
+
+bool	handle_ceiling(t_game *game)
+{
+	if (game->control.is_ceiling)
+		return (printf("Error\nDuplicate C identifier.\n"), false);
+	game->control.is_ceiling = 1;
+	return (true);
 }

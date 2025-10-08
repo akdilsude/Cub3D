@@ -1,9 +1,10 @@
 NAME	=	cub3D
 SRCS	=	build_map.c		\
-			direction.c 	\
+			handle_direct.c 	\
+			handle_colors.c 	\
 			frees.c 		\
 			map_control.c 	\
-			parse.c  		\
+			parse_path.c  		\
 			utils.c			\
 			get_next_line.c \
 			get_next_line_utils.c \

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   map_control.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:14 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/05 07:58:16 by segunes          ###   ########.fr       */
+/*   Updated: 2025/10/08 09:26:34 by sakdil           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -386,7 +386,27 @@ static void check_map(char **line, t_game *game)
 	}
 }
 
+static void	tabs_in_map(char **lines, t_game *game)
+{
+	int	y;
+	int	x;
 
+	y = game->map_start;
+	while (y < game->line_count)
+	{
+		x = 0;
+		while (lines[y][x])
+		{
+			if (lines[y][x] == '\t')
+			{
+				write(1, "Error\nTab var\n", 14);
+				free_error_exit(game);
+			}
+			x++;
+		}
+		y++;
+	}
+}
 void open_map(char *argv, t_game *list)
 {
 	char **lines;
@@ -412,7 +432,6 @@ void open_map(char *argv, t_game *list)
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		lines[count++] = line;
-		//tabs_to_spaces(lines[count - 1]);
 	}
 	lines[count] = NULL;
 	close(fd);
@@ -433,6 +452,7 @@ void open_map(char *argv, t_game *list)
 		// double_free(lines);
 		// free_exit(list);
 	}
+	tabs_in_map(lines, list); 
 	empty_line_control(lines, list->map_start, list->line_count, list);
 	player_is_one(lines, list);
 	list->y = list->line_count - list->map_start;
