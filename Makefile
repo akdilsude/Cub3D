@@ -9,6 +9,9 @@ SRCS	=	build_map.c		\
 			get_next_line.c \
 			get_next_line_utils.c \
 			main.c \
+			open_map.c 		\
+			process_map.c 		\
+
 
 OBJS	=	$(SRCS:.c=.o)
 RM		=	rm -f
