@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   map_control.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:14 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/08 11:21:37 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/08 16:35:08 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -56,6 +56,7 @@ static int control_identifier(char **lines, int line_count, t_game *game)
 
 	i = 0;
 	start_control_value(game);
+	printf("%s",lines[i]);
 	while (i < line_count)
 	{
 
@@ -87,12 +88,16 @@ static int control_identifier(char **lines, int line_count, t_game *game)
 		{
 			if (handle_floor(game) == false)
 				return (-1);
+			if(check_color(&lines[i],game) == -1)
+				return(-1);
 			i++;
 		}
 		else if (lines[i][0] == 'C' && (lines[i][1] == ' ' || lines[i][1] == '\t'))
 		{
 			if (handle_ceiling(game) == false)
 				return (-1);
+			if(check_color(&lines[i],game) == -1)
+				return(-1);
 			i++;
 		}
 		else

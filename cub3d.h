@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/10/08 10:43:08 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/08 16:41:56 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef CUB3D
 # define CUB3D
@@ -50,6 +50,14 @@ typedef struct s_game
 	char	*south;
 	char	*west;
 	char	*east;
+
+	int floor_r;
+    int floor_g;
+    int floor_b;
+
+    int ceiling_r;
+    int ceiling_g;
+    int ceiling_b;
 	t_control	control;
 
 }	t_game;

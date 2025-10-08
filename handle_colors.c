@@ -1,18 +1,18 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   handle_colors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:13:45 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/08 10:14:26 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/08 16:42:59 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
-bool	handle_floor(t_game *game)
+bool handle_floor(t_game *game)
 {
 	if (game->control.is_floor)
 		return (printf("Error\nDuplicate F identifier.\n"), false);
@@ -20,10 +20,84 @@ bool	handle_floor(t_game *game)
 	return (true);
 }
 
-bool	handle_ceiling(t_game *game)
+bool handle_ceiling(t_game *game)
 {
 	if (game->control.is_ceiling)
 		return (printf("Error\nDuplicate C identifier.\n"), false);
 	game->control.is_ceiling = 1;
 	return (true);
+}
+
+int check_color_number(char **rgb, t_game *game)
+{
+	int i;
+	int j;
+
+	i = 0;
+
+	while (rgb[i] != NULL)
+	{
+		j = 0;
+		while (rgb[i][j] != '\0')
+		{
+			if (!ft_isdigit(rgb[i][j]))
+			{
+				printf("invalid character");
+				return (-1);
+			}
+			j++;
+		}
+		if (ft_atoi(rgb[i]) < 0 || ft_atoi(rgb[i]) > 255)
+		{
+			printf("invalid number");
+			return (-1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+int check_color(char *line, t_game *game)
+{
+	int i;
+	int count;
+	char **rgb;
+	char *str;
+
+	count = 0;
+	i = 0;
+	str = ft_strtrim(line + 1, " ");
+	if (!str)
+	{
+		printf("Error\n");
+		return (-1);
+	}
+	rgb = ft_split(str, ',');
+	if (!rgb)
+	{
+		printf("Error\n");
+		return (-1);
+	}
+	while (rgb[count] != NULL)
+		count++;
+	if (count != 3)
+	{
+		printf("invalid number");
+		return (-1);
+	}
+	if (check_color_number(rgb, game) == -1)
+		return (-1);
+	if (line[0] == 'F')
+	{
+		game->floor_r = ft_atoi(rgb[0]);
+		game->floor_g = ft_atoi(rgb[1]);
+		game->floor_b = ft_atoi(rgb[2]);
+	}
+	else if (line[0] == 'C')
+	{
+		game->ceiling_r = ft_atoi(rgb[0]);
+		game->ceiling_g = ft_atoi(rgb[1]);
+		game->ceiling_b = ft_atoi(rgb[2]);
+	}
+	return (0);
 }
