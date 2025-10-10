@@ -6,7 +6,7 @@
 /*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 18:44:09 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/10 21:32:03 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/10 22:24:08 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,17 @@ static int	handle_color(char *line, t_game *game)
 
 static int	line_identifier(char **lines, int *i, t_game *game)
 {
-	int	result;
+	int		result;
+	char	*curr_line;
 
-	if (!ft_strncmp(lines[*i], "NO", 2) || !ft_strncmp(lines[*i], "SO", 2)
-		|| !ft_strncmp(lines[*i], "WE", 2) || !ft_strncmp(lines[*i], "EA", 2))
-		result = handle_direct(lines[*i], game);
-	else if (lines[*i][0] == 'F' || lines[*i][0] == 'C')
-		result = handle_color(lines[*i], game);
+	curr_line = lines[*i];
+	while (*curr_line == ' ' || *curr_line == '\t')
+		curr_line++;
+	if (!ft_strncmp(curr_line, "NO", 2) || !ft_strncmp(curr_line, "SO", 2)
+		|| !ft_strncmp(curr_line, "WE", 2) || !ft_strncmp(curr_line, "EA", 2))
+		result = handle_direct(curr_line, game);
+	else if (curr_line[0] == 'F' || curr_line[0] == 'C')
+		result = handle_color(curr_line, game);
 	else
 		return (0);
 	if (result == -1)

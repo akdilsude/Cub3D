@@ -6,7 +6,7 @@
 /*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:53:07 by segunes           #+#    #+#             */
-/*   Updated: 2025/10/08 10:10:02 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/10 22:36:59 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,12 @@ char	*find_path(char *input)
 	char	*path;
 
 	i = 0;
-	if (!input)
-		return (NULL);
 	while (input[i] && input[i] != ' ' && input[i] != '\t')
-        i++;
+		i++;
 	while (input[i] == ' ' || input[i] == '\t')
-        i++;
-	if (input[i] != '.' && input[i] != '/') //path burdan başlayacak sadece pathi tutmamız lazom
-        return (NULL);
+		i++;
+	if (!input[i])
+		return (NULL);
 	path = clean_end(input + i);
 	if (!path)
 		return (NULL);
