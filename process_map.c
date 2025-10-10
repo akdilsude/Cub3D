@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:33:03 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/08 20:54:52 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/10 16:33:11 by segunes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	tabs_in_map(char **lines, t_game *game)
 	int	x;
 
 	y = game->map_start;
-	while (y < game->line_count)
+	while (y < game->map_start + game->y)
 	{
 		x = 0;
 		while (lines[y][x])

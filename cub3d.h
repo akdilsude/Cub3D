@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/10/08 20:37:35 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/10 13:34:39 by segunes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,10 @@ bool	handle_ea(char *line, t_game *game);
 int		is_all_set(t_game *game);
 int		control_identifier(char **lines, t_game *game);
 void	start_control_value(t_game *game);
-void	open_map(char **argv, t_game *game);
+void	open_map(char *argv, t_game *game);
 void	tabs_in_map(char **lines, t_game *game);
 void	check_map_end(char **lines, t_game *game);
 void	empty_line_inside_map(char **lines, t_game *game);
-
-
-
-
 void	name_control(char *str);
 void	game_edit(t_game *list);
 int		is_only_spaces(char *str);
@@ -90,6 +86,9 @@ char	*get_next_line(int fd);
 char	*join(char *s1, char *s2);
 void free_error_exit(t_game *game);
 int	line_len(char *str);
-
+void	check_walls(char **lines, t_game *game);
+void	check_zero(char **lines, t_game *game);
+void	check_map(char **lines, t_game *game);
+int check_color(char *line, t_game *game);
 
 #endif

@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   handle_colors.c                                    :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:13:45 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/08 16:42:59 by segunes          ###   ########.fr       */
+/*   Updated: 2025/10/10 16:57:08 by segunes          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -28,7 +28,7 @@ bool handle_ceiling(t_game *game)
 	return (true);
 }
 
-int check_color_number(char **rgb, t_game *game)
+int check_color_number(char **rgb)
 {
 	int i;
 	int j;
@@ -40,6 +40,7 @@ int check_color_number(char **rgb, t_game *game)
 		j = 0;
 		while (rgb[i][j] != '\0')
 		{
+			//printf("%c",rgb[i][j]);
 			if (!ft_isdigit(rgb[i][j]))
 			{
 				printf("invalid character");
@@ -59,14 +60,12 @@ int check_color_number(char **rgb, t_game *game)
 
 int check_color(char *line, t_game *game)
 {
-	int i;
 	int count;
 	char **rgb;
 	char *str;
 
 	count = 0;
-	i = 0;
-	str = ft_strtrim(line + 1, " ");
+	str = ft_strtrim(line + 1, " \t\n");
 	if (!str)
 	{
 		printf("Error\n");
@@ -85,7 +84,7 @@ int check_color(char *line, t_game *game)
 		printf("invalid number");
 		return (-1);
 	}
-	if (check_color_number(rgb, game) == -1)
+	if (check_color_number(rgb) == -1)
 		return (-1);
 	if (line[0] == 'F')
 	{

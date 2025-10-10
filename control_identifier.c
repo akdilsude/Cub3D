@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_identifier.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 18:44:09 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/08 19:58:09 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/10 17:07:46 by segunes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,12 @@ int control_identifier(char **lines, t_game *game)
 	start_control_value(game);
 	while (i < game->line_count)
 	{
-		result = line_identifier(lines, i, game);
+		if(is_only_spaces(lines[i]))
+		{
+			i++;
+			continue;;
+		}
+		result = line_identifier(lines, &i, game);
 		if (result == -1)
 			return (-1);
 		else if (result == 0)

@@ -11,6 +11,7 @@ SRCS	=	build_map.c		\
 			main.c \
 			open_map.c 		\
 			process_map.c 		\
+			control_identifier.c \
 
 
 OBJS	=	$(SRCS:.c=.o)
