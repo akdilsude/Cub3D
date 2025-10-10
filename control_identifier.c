@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_identifier.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 18:44:09 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/10 17:07:46 by segunes          ###   ########.fr       */
+/*   Updated: 2025/10/10 21:32:03 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
