@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   handle_colors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:13:45 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/10 23:13:03 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/11 16:52:36 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -63,15 +63,37 @@ int check_color(char *line, t_game *game)
 	int count;
 	char **rgb;
 	char *str;
+	char *tmp;
+	size_t i;
+	int j;
 
+	i = 0;
+	j = 0;
 	count = 0;
 	str = ft_strtrim(line + 1, " \t\n");
+	tmp = malloc(ft_strlen(str) + 1);
+	if(!tmp)
+	{
+		printf("Memory allocation failed\n");
+		free(str);
+		return(-1);//değiştirilebilir	
+	}
 	if (!str)
 	{
 		printf("Error\n");
 		return (-1);
 	}
-	rgb = ft_split(str, ',');
+	while(i < ft_strlen(str))
+	{
+		if(str[i] != ' ' && str[i] != '\t')
+		{
+			tmp[j] = str[i];
+			j++;
+		}
+		i++;
+	}
+	tmp[j] = '\0';
+	rgb = ft_split(tmp, ',');
 	if (!rgb)
 	{
 		printf("Error\n");
