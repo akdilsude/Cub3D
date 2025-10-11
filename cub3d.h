@@ -6,7 +6,7 @@
 /*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/10/11 14:53:06 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/11 15:00:01 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ int		is_only_spaces(char *str);
 char	**build_map(char **line, t_game * game);
 bool	handle_floor(t_game *game);
 bool	handle_ceiling(t_game *game);
-char	*new(char *str);
-char	*line(char *str);
 char	*get_next_line(int fd);
-char	*join(char *s1, char *s2);
 void free_error_exit(t_game *game);
 int	line_len(char *str);
 void	check_zero(char **lines, t_game *game);

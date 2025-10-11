@@ -1,7 +1,6 @@
 NAME	=	cub3D
 SRCS	=	control_identifier.c \
 			frees.c 		\
-			get_next_line_utils.c \
 			get_next_line.c \
 			handle_colors.c 	\
 			handle_direct.c 	\
