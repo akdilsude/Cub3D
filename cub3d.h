@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/10/10 13:34:39 by segunes          ###   ########.fr       */
+/*   Updated: 2025/10/11 14:53:06 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,14 @@ char	*get_next_line(int fd);
 char	*join(char *s1, char *s2);
 void free_error_exit(t_game *game);
 int	line_len(char *str);
-void	check_walls(char **lines, t_game *game);
 void	check_zero(char **lines, t_game *game);
 void	check_map(char **lines, t_game *game);
 int check_color(char *line, t_game *game);
+int check_nsew(char c);
+void	check_top_walls(char **lines, t_game *game);
+void	check_bottom_walls(char **lines, t_game *game);
+void	check_side_walls(char **lines, t_game *game);
+int	is_map_char(char c);
+
 
 #endif

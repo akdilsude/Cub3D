@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:33:03 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/10 16:33:11 by segunes          ###   ########.fr       */
+/*   Updated: 2025/10/11 14:53:40 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,47 @@ void empty_line_inside_map(char **lines, t_game *game)
 			free_error_exit(game);
 		}
 		y++;
+	}
+}
+
+void	check_top_walls(char **lines, t_game *game)
+{
+	int		x;
+	int		len;
+	char	c;
+
+	x = 0;
+	len = line_len(lines[game->map_start]);
+	while (x < len)
+	{
+		c = lines[game->map_start][x];
+		if (c == '0' || check_nsew(c))
+		{
+			printf("Error\nTop edge not closed at x=%d\n", x + 1);
+			free_error_exit(game);
+		}
+		x++;
+	}
+}
+
+void	check_bottom_walls(char **lines, t_game *game)
+{
+	int		x;
+	int		y;
+	int		len;
+	char	c;
+
+	x = 0;
+	y = game->y - 1;
+	len = line_len(lines[game->map_start + y]);
+	while (x < len)
+	{
+		c = lines[game->map_start + y][x];
+		if (c == '0' || check_nsew(c))
+		{
+			printf("Error\nBottom edge not closed at x=%d\n", x + 1);
+			free_error_exit(game);
+		}
+		x++;
 	}
 }

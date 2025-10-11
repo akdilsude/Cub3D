@@ -1,17 +1,17 @@
 NAME	=	cub3D
-SRCS	=	build_map.c		\
-			handle_direct.c 	\
-			handle_colors.c 	\
+SRCS	=	control_identifier.c \
 			frees.c 		\
-			map_control.c 	\
-			parse_path.c  		\
-			utils.c			\
-			get_next_line.c \
 			get_next_line_utils.c \
+			get_next_line.c \
+			handle_colors.c 	\
+			handle_direct.c 	\
 			main.c \
+			map_control.c 	\
 			open_map.c 		\
+			parse_path.c  		\
 			process_map.c 		\
-			control_identifier.c \
+			process_map2.c 		\
+			utils.c			\
 
 
 OBJS	=	$(SRCS:.c=.o)

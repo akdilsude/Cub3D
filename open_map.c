@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:00:10 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/10 13:21:59 by segunes          ###   ########.fr       */
+/*   Updated: 2025/10/11 14:39:07 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,9 @@ static void	process_map(char **lines, t_game *game)
 	check_map_end(lines, game);
 	empty_line_inside_map(lines, game);
 	player_is_one(lines, game);
-	check_walls(lines, game);
+	check_top_walls(lines, game);
+	check_bottom_walls(lines, game);
+	check_side_walls(lines, game);
 	check_zero(lines, game);
 	check_map(lines, game);
 	game->map = build_map(lines, game);

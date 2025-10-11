@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_control.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:14 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/10 16:45:32 by segunes          ###   ########.fr       */
+/*   Updated: 2025/10/11 14:54:22 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ void name_control(char *str)
 		printf("Error\nInvalid map file extension.\n");
 		// free_exit(list);
 	}
-}
-
-int check_nsew(char c)
-{
-	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
-		return (1);
-	return (0);
 }
 
 int	line_len(char *str)
@@ -103,103 +96,3 @@ void	check_zero(char **lines, t_game *game)
 	}
 }
 
-void	check_walls(char **lines, t_game *game)
-{
-	int		x;
-	int		y;
-	int		len;
-	int		i;
-	char	c;
-	char *row;
-
-	y = 0;
-	x = 0;
-	len = line_len(lines[game->map_start + y]);
-	while (x < len)
-	{
-		c = lines[game->map_start + y][x];
-		if (c == '0' || check_nsew(c))
-		{
-			printf("Error\nTop edge not closed at x=%d\n", x + 1);
-			free_error_exit(game);
-		}
-		x++;
-	}
-	y = game->y - 1;
-	x = 0;
-	len = line_len(lines[game->map_start + y]);
-	while (x < len)
-	{
-		c = lines[game->map_start + y][x];
-		if (c == '0' || check_nsew(c))
-		{
-			printf("Error\nBottom edge not closed at x=%d\n", x + 1);
-			free_error_exit(game);
-		}
-		x++;
-	}
-	y = 1;
-	while (y < game->y - 1)
-	{
-		row = lines[game->map_start + y];
-		len = line_len(row);
-		i = 0;
-		while (i < len && row[i] == ' ')
-			i++;
-		while (len > 0 && row[len - 1] == ' ')
-			len--;
-		if (i < len)
-		{
-			if (row[i] != '1')
-			{
-				printf("Error\nLeft edge not closed at y=%d\n", y + 1);
-				free_error_exit(game);
-			}
-			if (row[len - 1] != '1')
-			{
-				printf("Error\nRight edge not closed at y=%d\n", y + 1);
-				free_error_exit(game);
-			}
-		}
-		y++;
-	}
-}
-
-
-static int	is_map_char(char c)
-{
-	return (c == '0' || c == '1' || c == ' ' || c == '\n'
-		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
-}
-
-void	check_map(char **lines, t_game *game)
-{
-	int		y;
-	int		x;
-	int		len;
-	char	c;
-
-	y = 0;
-	while (y < game->y)
-	{
-		x = 0;
-		len = line_len(lines[game->map_start + y]);
-		while (x < len)
-		{
-			c = lines[game->map_start + y][x];
-			if (c == '\t')
-			{
-				printf("Error\nTab var\n");
-				free_error_exit(game);
-			}
-			if (!is_map_char(c))
-			{
-				printf("Error\nInvalid character '%c' at (row=%d, col=%d).\n",
-					c, y + 1, x + 1);
-				free_error_exit(game);
-			}
-			x++;
-		}
-		y++;
-	}
-}

@@ -6,7 +6,7 @@
 /*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:19 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/10 21:33:06 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/11 14:53:02 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,17 @@ void	start_control_value(t_game *game)
 	game->control.is_ea = 0;
 	game->control.is_floor = 0;
 	game->control.is_ceiling = 0;
+}
+
+int check_nsew(char c)
+{
+	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
+		return (1);
+	return (0);
+}
+
+int	is_map_char(char c)
+{
+	return (c == '0' || c == '1' || c == ' ' || c == '\n'
+		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
