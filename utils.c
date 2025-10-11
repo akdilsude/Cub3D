@@ -6,7 +6,7 @@
 /*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:19 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/11 14:53:02 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/11 16:58:38 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,14 @@ int	is_map_char(char c)
 {
 	return (c == '0' || c == '1' || c == ' ' || c == '\n'
 		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+int	line_len(char *str)
+{
+	int	n;
+
+	n = ft_strlen(str);
+	if (n > 0 && str[n - 1] == '\n')
+		n--;
+	return (n);
 }

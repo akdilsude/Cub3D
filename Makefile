@@ -5,11 +5,11 @@ SRCS	=	control_identifier.c \
 			handle_colors.c 	\
 			handle_direct.c 	\
 			main.c \
-			map_control.c 	\
 			open_map.c 		\
 			parse_path.c  		\
 			process_map.c 		\
 			process_map2.c 		\
+			process_map3.c 		\
 			utils.c			\
 
 

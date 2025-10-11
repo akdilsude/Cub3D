@@ -6,7 +6,7 @@
 /*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 14:46:26 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/11 14:47:11 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/11 16:57:26 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ void	check_map(char **lines, t_game *game)
 		{
 			c = lines[game->map_start + y][x];
 			error_check_map(c, game); 
-  			x++;
-        }
-        y++;
-    }
+			x++;
+		}
+		y++;
+	}
 }
 
 char	**build_map(char **line, t_game * game)
