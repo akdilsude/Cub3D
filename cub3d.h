@@ -40,6 +40,8 @@ typedef struct s_game
 	int		y;
 	int		player_x;
 	int		player_y;
+	int		vec_x;
+	int		vec_y;
 	char	player_direc;
 	int		map_start;
 	int		line_count;

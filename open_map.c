@@ -58,6 +58,30 @@ static void error_msg_player(int count, t_game *game)
 	}
 }
 
+static void	find_vector(t_game *game)
+{
+	if (game->player_direc == 'N')
+	{
+		game->vec_x = 0;
+		game->vec_y = -1;
+	}
+	else if (game->player_direc == 'S')
+	{
+		game->vec_x = 0;
+		game->vec_y = 1;
+	}
+	else if (game->player_direc == 'W')
+	{
+		game->vec_x = -1;
+		game->vec_y = 0;
+	}
+	else if (game->player_direc == 'E')
+	{
+		game->vec_x = 1;
+		game->vec_y = 0;
+	}
+}
+
 static void	player_is_one(char **line, t_game *game)
 {
 	int	y;
@@ -83,6 +107,7 @@ static void	player_is_one(char **line, t_game *game)
 		y++;
 	}
 	error_msg_player(count, game);
+	find_vector(game); //zaten error_msg'de exit le çıkıyor ancak yine de kontrol et en son!
 }
 
 static void	process_map(char **lines, t_game *game)

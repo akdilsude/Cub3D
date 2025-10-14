@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-bool handle_floor(t_game *game)
+bool	handle_floor(t_game *game)
 {
 	if (game->control.is_floor)
 		return (printf("Error\nDuplicate F identifier.\n"), false);
@@ -20,7 +20,7 @@ bool handle_floor(t_game *game)
 	return (true);
 }
 
-bool handle_ceiling(t_game *game)
+bool	handle_ceiling(t_game *game)
 {
 	if (game->control.is_ceiling)
 		return (printf("Error\nDuplicate C identifier.\n"), false);
@@ -28,19 +28,17 @@ bool handle_ceiling(t_game *game)
 	return (true);
 }
 
-int check_color_number(char **rgb)
+int	check_color_number(char **rgb)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
-
 	while (rgb[i] != NULL)
 	{
 		j = 0;
 		while (rgb[i][j] != '\0')
 		{
-			//printf("%c",rgb[i][j]);
 			if (!ft_isdigit(rgb[i][j]))
 			{
 				printf("invalid character");
@@ -58,7 +56,7 @@ int check_color_number(char **rgb)
 	return (0);
 }
 
-int check_color(char *line, t_game *game)
+int	check_color(char *line, t_game *game)
 {
 	int count;
 	char **rgb;
@@ -74,7 +72,7 @@ int check_color(char *line, t_game *game)
 	tmp = malloc(ft_strlen(str) + 1);
 	if(!tmp)
 	{
-		printf("Memory allocation failed\n");
+		printf("Error\nMemory allocation failed\n");
 		free(str);
 		return(-1);//değiştirilebilir	
 	}
@@ -122,3 +120,4 @@ int check_color(char *line, t_game *game)
 	}
 	return (0);
 }
+
