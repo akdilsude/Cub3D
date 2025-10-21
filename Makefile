@@ -11,6 +11,7 @@ SRCS			=	control_identifier.c	\
 					process_map2.c 			\
 					process_map3.c 			\
 					utils.c					\
+					init.c					\
 
 
 OBJS			=	$(SRCS:.c=.o)
