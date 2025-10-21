@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/10/11 15:00:01 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/10/21 14:02:18 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 #endif
+
+#  define WINDOW_WIDTH 1280
+#  define WINDOW_HEIGHT 720
 
 typedef struct s_control
 {
@@ -53,13 +56,21 @@ typedef struct s_game
 	char	*west;
 	char	*east;
 
-	int floor_r;
-    int floor_g;
-    int floor_b;
+	int		floor_r;
+    int		floor_g;
+    int		floor_b;
 
-    int ceiling_r;
-    int ceiling_g;
-    int ceiling_b;
+    int		ceiling_r;
+    int		ceiling_g;
+    int		ceiling_b;
+
+
+	void	*mlx;
+	void	*win;
+	void	*img;
+	int		win_x;
+	int		win_y;
+
 	t_control	control;
 
 }	t_game;
@@ -83,16 +94,17 @@ char	**build_map(char **line, t_game * game);
 bool	handle_floor(t_game *game);
 bool	handle_ceiling(t_game *game);
 char	*get_next_line(int fd);
-void free_error_exit(t_game *game);
-int	line_len(char *str);
+void	free_error_exit(t_game *game);
+int		line_len(char *str);
 void	check_zero(char **lines, t_game *game);
 void	check_map(char **lines, t_game *game);
-int check_color(char *line, t_game *game);
-int check_nsew(char c);
+int		check_color(char *line, t_game *game);
+int		check_nsew(char c);
 void	check_top_walls(char **lines, t_game *game);
 void	check_bottom_walls(char **lines, t_game *game);
 void	check_side_walls(char **lines, t_game *game);
-int	is_map_char(char c);
+int		is_map_char(char c);
 
+void	init_mlx(t_game *game);
 
 #endif
