@@ -6,13 +6,13 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 13:31:48 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/21 14:05:24 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/12/02 12:55:40 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_mlx(t_game *game)
+static void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -35,4 +35,60 @@ void	init_mlx(t_game *game)
 		free_error_exit(game);
 	}
 	
+}
+
+static int	close_window(t_game *game)
+{
+	//freeleri buraya at
+	printf("Exiting the game....");
+	free_error_exit(game);
+	return (0);	
+}
+
+static int	key_control(int keycode, t_game *game)
+{
+	if (keycode == 65307) 
+	{
+		close_window(game);
+		return (0);
+	}
+	//W,A,S,D buraya gelecek
+	return (0);
+	
+}
+
+static int	game_loop(t_game *game)
+{
+	int	x;
+	int	y;
+	int	ceil_color;
+	int	floor_color;
+
+	y = 0;
+	ceil_color = create_color(game->ceiling_r, game->ceiling_g, game->ceiling_b);
+	floor_color = create_color(game->floor_r, game->floor_g, game->floor_b);
+	while (y < game->win_y)
+	{
+		x = 0;
+		while (x < game->win_x)
+		{
+			if (y < game->win_y / 2) 
+				draw_pixel_to_image(x, y, ceil_color, game); //BU FONKSİYON YAZILACAK
+			else 
+				draw_pixel_to_image(x, y, floor_color, game);
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	return (0);
+}
+
+void	game_start(t_game *game)
+{
+	init_mlx(game);
+	mlx_hook(game->win, 17, 0, close_window, game);
+	mlx_hook(game->win, 2, 1L << 0, key_control, game);
+	mlx_loop_hook(game->mlx, game_loop, game);
+	mlx_loop(game->mlx);
 }
