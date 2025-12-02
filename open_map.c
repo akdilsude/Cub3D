@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:00:10 by sakdil            #+#    #+#             */
-/*   Updated: 2025/12/02 11:59:04 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/12/02 14:36:42 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -64,22 +64,62 @@ static void	find_vector(t_game *game)
 	{
 		game->vec_x = 0;
 		game->vec_y = -1;
+		game->plane_x = 0.66;
+		game->plane_y = 0;
 	}
 	else if (game->player_direc == 'S')
 	{
 		game->vec_x = 0;
 		game->vec_y = 1;
+		game->plane_x = -0.66;
+		game->plane_y = 0;
 	}
 	else if (game->player_direc == 'W')
 	{
 		game->vec_x = -1;
 		game->vec_y = 0;
+		game->plane_x = 0;
+		game->plane_y = 0.66;
 	}
 	else if (game->player_direc == 'E')
 	{
 		game->vec_x = 1;
 		game->vec_y = 0;
+		game->plane_x = 0;
+		game->plane_y = -0.66;
 	}
+	/*
+	Raycasting’te ekranın solundaki ışının yönü şöyle hesaplanır:
+	
+	rayDir = dir + plane * cameraX
+	Bu nedenle:
+	Plane uzunluğu arttıkça → kamera genişler → FOV büyür
+	Plane küçülürse → ekran daralır → FOV küçülür
+	İşte bu nedenle plane = 0.66 koymak → yaklaşık olarak 66° FOV’a denk gelir.
+	Matematiği şöyle:
+	planeLen = tan(FOV / 2)
+	Eğer planeLen = 0.66 ise:
+	0.66 = tan(FOV/2)
+	FOV/2 = atan(0.66)
+	FOV/2 ≈ 33°
+	FOV ≈ 66°
+	✔ 1) İnsan gözüne en yakın yatay görüş
+	Gerçek hayatta yatay görüş ~120° ama merkezi odak ~60–70° civarında.
+	Raycasting bu merkezi görüşü simüle eder.
+	✔ 2) Duvarlar fazla geniş veya fazla dar görünmez
+	FOV çok büyük olursa (örn. 90°+):
+	duvarlar yamulur
+	balık gözü efekti oluşur
+	Wolfenstein stilini bozarsın
+	FOV çok küçük olursa:
+	tünel görür gibi olursun
+	oyun karanlık ve dar hisseder
+	✔ 3) Performans açısından optimum
+	Raycasting eski bir yöntem; fazla geniş FOV CPU’yu çok yorardı.
+	66° bu yüzden “tatlı nokta” (sweet spot).
+	✔ 4) Cub3D norminette böyle bekleniyor
+	Bu motor, Wolf3D’nin bire bir kopyası olduğundan 66°→ plane = 0.66 kullanmak geleneksel olarak doğru.
+	*/
 }
 
 static void	player_is_one(char **line, t_game *game)

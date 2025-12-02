@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 13:31:48 by sakdil            #+#    #+#             */
-/*   Updated: 2025/12/02 12:55:40 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/12/02 17:24:40 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -56,6 +56,31 @@ static int	key_control(int keycode, t_game *game)
 	return (0);
 	
 }
+int raycasting(t_game *game)
+{
+	int x;
+	int map_x;
+	int map_y;
+	double view_x;
+	double ray_x;
+	double ray_y;
+	double hipo_x;
+	
+	x = 0;
+	
+	while(x < game->win_x)//ekranın en solundan en sağına gidiyoruz
+	{
+		view_x = 2 * x / game->win_x -1;//0 ile 2 arasında bir değer yapar -1 yapıncada -1 ile 1 arsında olucak
+	//view değişkeni, o an döngüdeki x değerinin (yani ekranındaki piksel sütununun) bu çizgi üzerinde nereye denk geldiğini söyler.
+		ray_x= game->vec_x + (game->plane_x * view_x);
+		ray_y = game->vec_y + (game->plane_y * view_x);
+		//Bu değerler görüş açısı
+
+		x++;
+	}
+}
+
+
 
 static int	game_loop(t_game *game)
 {

@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/12/02 13:27:13 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/12/02 14:26:25 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef CUB3D
 # define CUB3D
@@ -46,6 +46,8 @@ typedef struct s_game
 	int		player_y;
 	int		vec_x;
 	int		vec_y;
+	int		plane_x;
+	int		plane_y;
 	char	player_direc;
 	int		map_start;
 	int		line_count;
@@ -108,6 +110,6 @@ int		is_map_char(char c);
 
 void	game_start(t_game *game);
 int		create_color(int r, int g, int b);
-void	draw_pixel_to_image(int x, int y, int color, t_game *game); //YAZILACAK
+//void	draw_pixel_to_image(int x, int y, int color, t_game *game); //YAZILACAK
 
 #endif
