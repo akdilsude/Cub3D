@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2025/12/02 12:37:10 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/12/02 13:27:13 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,7 @@ void	check_side_walls(char **lines, t_game *game);
 int		is_map_char(char c);
 
 void	game_start(t_game *game);
+int		create_color(int r, int g, int b);
+void	draw_pixel_to_image(int x, int y, int color, t_game *game); //YAZILACAK
 
 #endif
