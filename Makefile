@@ -14,7 +14,8 @@ SRCS			=	control_identifier.c	\
 					init.c					\
 					utils2.c				\
 					color_and_draw.c		\
-
+					raycasting.c			\
+					movement.c				\
 
 
 OBJS			=	$(SRCS:.c=.o)
@@ -34,7 +35,7 @@ $(MINILIBX):
 	@make -C $(MINILIBX_DIR)
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-		$(CC) $(CFLAGS) $(LFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(LFLAGS) -o $(NAME)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
