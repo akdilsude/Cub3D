@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:33:03 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/11 14:53:40 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 21:51:38 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ void	tabs_in_map(char **lines, t_game *game)
 
 void	check_map_end(char **lines, t_game *game)
 {
-    int	i;
+	int	i;
 	int	end;
 
 	end = game->map_start;
 	while (end < game->line_count && !is_only_spaces(lines[end]))
 		end++;
-
 	end--;
 	if (end < game->map_start)
 	{
@@ -62,9 +61,9 @@ void	check_map_end(char **lines, t_game *game)
 	}
 }
 
-void empty_line_inside_map(char **lines, t_game *game)
+void	empty_line_inside_map(char **lines, t_game *game)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (y < game->y)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:57:15 by segunes           #+#    #+#             */
-/*   Updated: 2025/12/02 12:03:30 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 22:08:36 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,7 @@ int	main(int argc, char **argv)
 	{
 		name_control(argv[1]);
 		open_map(argv[1], list);
-	// 	if (list->x > 59 || list->y > 32)
-	// 	{
-	// 		write(1, "Error\nMap size exceeds limits (max 59x32).\n", 43);
-	// 		free_exit(list);
-	// 	}
 		game_start(list);
-	// }
-	// else
-	// {
-	// 	write(1, "Error\nInvalid arguments.\n", 25);
-	// 	main_finish(list);
 	}
 	return (0);
 }

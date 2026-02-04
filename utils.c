@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:24:19 by sakdil            #+#    #+#             */
-/*   Updated: 2025/12/02 12:33:43 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 22:09:25 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int	is_only_spaces(char *str)
 
 int	is_all_set(t_game *game)
 {
-	if (game->control.is_no && game->control.is_so && game->control.is_we 
-			&& game->control.is_ea && game->control.is_floor && game->control.is_ceiling)
+	if (game->control.is_no && game->control.is_so && game->control.is_we
+		&& game->control.is_ea && game->control.is_floor
+		&& game->control.is_ceiling)
 		return (1);
 	return (0);
 }
@@ -41,7 +42,7 @@ void	start_control_value(t_game *game)
 	game->control.is_ceiling = 0;
 }
 
-int check_nsew(char c)
+int	check_nsew(char c)
 {
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		return (1);

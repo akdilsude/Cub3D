@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_identifier.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 18:44:09 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/10 22:24:08 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 22:25:25 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	handle_direct(char *line, t_game *game)
 			return (-1);
 	}
 	else
-		return (-1); //Geçersiz format
+		return (-1);
 	return (1);
 }
 
@@ -56,7 +56,7 @@ static int	handle_color(char *line, t_game *game)
 			return (-1);
 	}
 	else
-		return (-1); //Geçersiz format
+		return (-1);
 	return (1);
 }
 
@@ -76,7 +76,7 @@ static int	line_identifier(char **lines, int *i, t_game *game)
 	else
 		return (0);
 	if (result == -1)
-		return (-1); //hata
+		return (-1);
 	(*i)++;
 	return (1);
 }
@@ -85,22 +85,21 @@ static int	validate_map(char **lines, int i, t_game *game)
 {
 	if (!is_all_set(game))
 	{
-		//free,
-		printf("Error\nConfiguration identifiers (NO, SO, WE, EA, F, C) are missing.\n");
+		printf("Error\nConfiguration identifiers"
+			"(NO, SO, WE, EA, F, C) are missing.\n");
 		return (-1);
 	}
 	while (i < game->line_count && is_only_spaces(lines[i]))
 		i++;
 	if (i >= game->line_count)
 	{
-		//free
 		printf("Error\nMap not found after setup.\n");
 		return (-1);
 	}
 	return (i);
 }
 
-int control_identifier(char **lines, t_game *game)
+int	control_identifier(char **lines, t_game *game)
 {
 	int	i;
 	int	result;
@@ -109,16 +108,16 @@ int control_identifier(char **lines, t_game *game)
 	start_control_value(game);
 	while (i < game->line_count)
 	{
-		if(is_only_spaces(lines[i]))
+		if (is_only_spaces(lines[i]))
 		{
 			i++;
-			continue;;
+			continue ;
 		}
 		result = line_identifier(lines, &i, game);
 		if (result == -1)
 			return (-1);
 		else if (result == 0)
-			break ; //identiefer olmayan bir satır var demek
+			break ;
 	}
 	return (validate_map(lines, i, game));
 }

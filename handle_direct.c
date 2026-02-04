@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   handle_direct.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:23:45 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/08 10:13:22 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 22:20:03 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+bool	handle_ceiling(t_game *game)
+{
+	if (game->control.is_ceiling)
+		return (printf("Error\nDuplicate C identifier.\n"), false);
+	game->control.is_ceiling = 1;
+	return (true);
+}
 
 bool	handle_no(char *line, t_game *game)
 {

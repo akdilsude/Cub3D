@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_map2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 14:46:26 by sakdil            #+#    #+#             */
-/*   Updated: 2025/10/11 16:57:26 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 21:50:03 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	continue_side_walls(char **lines, t_game *game, int y)
 	row = lines[game->map_start + y];
 	len = line_len(row);
 	while (i < len && row[i] == ' ')
-			i++;
+		i++;
 	while (len > 0 && row[len - 1] == ' ')
 		len--;
 	if (i < len)
@@ -81,14 +81,14 @@ void	check_map(char **lines, t_game *game)
 		while (x < len)
 		{
 			c = lines[game->map_start + y][x];
-			error_check_map(c, game); 
+			error_check_map(c, game);
 			x++;
 		}
 		y++;
 	}
 }
 
-char	**build_map(char **line, t_game * game)
+char	**build_map(char **line, t_game *game)
 {
 	int	y;
 
@@ -105,7 +105,6 @@ char	**build_map(char **line, t_game * game)
 		if (!game->map[y])
 		{
 			printf("Error\nFailed map.\n");
-			//double_free(game->map);
 			free_error_exit(game);
 		}
 		y++;

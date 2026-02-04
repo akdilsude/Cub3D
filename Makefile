@@ -2,7 +2,7 @@ NAME			=	cub3D
 SRCS			=	control_identifier.c	\
 					frees.c					\
 					get_next_line.c			\
-					handle_colors.c 		\
+					check_color.c 			\
 					handle_direct.c 		\
 					main.c					\
 					open_map.c 				\
@@ -16,6 +16,7 @@ SRCS			=	control_identifier.c	\
 					color_and_draw.c		\
 					raycasting.c			\
 					movement.c				\
+					vertical_line.c			\
 
 
 OBJS			=	$(SRCS:.c=.o)
