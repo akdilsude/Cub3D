@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 12:44:25 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 21:36:44 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:37:18 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	load_texture(t_game *game, char *path, int i)
 	if (!path)
 	{
 		printf("Error\nTexture path is NULL for index %d\n", i);
+		cleanup(game);
 		exit(1);
 	}
 	tex = &game->textures[i];
@@ -27,7 +28,8 @@ static void	load_texture(t_game *game, char *path, int i)
 	if (!tex->img)
 	{
 		printf("Error\nCould not load texture: %s\n", path);
-		free_error_exit(game);
+		cleanup(game);
+		exit(1);
 	}
 	tex->pixels = mlx_get_data_addr(tex->img, &tex->bits_per_pixel,
 			&tex->line_len, &tex->byte_order);
@@ -69,4 +71,12 @@ int	texture_index(t_game *game)
 			return (1);
 		return (0);
 	}
+}
+
+bool	handle_floor(t_game *game)
+{
+	if (game->control.is_floor)
+		return (printf("Error\nDuplicate F identifier.\n"), false);
+	game->control.is_floor = 1;
+	return (true);
 }

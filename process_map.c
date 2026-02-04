@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:33:03 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 21:51:38 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:09:42 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ void	tabs_in_map(char **lines, t_game *game)
 		{
 			if (lines[y][x] == '\t')
 			{
-				printf("Error\nTab var\n");
-				free_error_exit(game);
+				printf("Error\nTab on the map.\n");
+				cleanup(game);
+				exit(1);
 			}
 			x++;
 		}
@@ -46,7 +47,8 @@ void	check_map_end(char **lines, t_game *game)
 	if (end < game->map_start)
 	{
 		printf("Error\nNo map found.\n");
-		free_error_exit(game);
+		cleanup(game);
+		exit(1);
 	}
 	game->y = end - game->map_start + 1;
 	i = end + 1;
@@ -55,7 +57,8 @@ void	check_map_end(char **lines, t_game *game)
 		if (!is_only_spaces(lines[i]))
 		{
 			printf("Error\nNothing is allowed after the map.\n");
-			free_error_exit(game);
+			cleanup(game);
+			exit(1);
 		}
 		i++;
 	}
@@ -71,7 +74,8 @@ void	empty_line_inside_map(char **lines, t_game *game)
 		if (is_only_spaces(lines[game->map_start + y]))
 		{
 			printf("Error\nThere is empty space on the map.\n");
-			free_error_exit(game);
+			cleanup(game);
+			exit(1);
 		}
 		y++;
 	}
@@ -91,7 +95,8 @@ void	check_top_walls(char **lines, t_game *game)
 		if (c == '0' || check_nsew(c))
 		{
 			printf("Error\nTop edge not closed at x=%d\n", x + 1);
-			free_error_exit(game);
+			cleanup(game);
+			exit(1);
 		}
 		x++;
 	}
@@ -113,7 +118,8 @@ void	check_bottom_walls(char **lines, t_game *game)
 		if (c == '0' || check_nsew(c))
 		{
 			printf("Error\nBottom edge not closed at x=%d\n", x + 1);
-			free_error_exit(game);
+			cleanup(game);
+			exit(1);
 		}
 		x++;
 	}

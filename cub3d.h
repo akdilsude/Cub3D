@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2026/02/04 22:14:47 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:56:15 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_game
 	int			map_start;
 	int			line_count;
 	char		**map;
+	char		**tmp_lines;
 	char		*north;
 	char		*south;
 	char		*west;
@@ -130,7 +131,6 @@ char	**build_map(char **line, t_game *game);
 bool	handle_floor(t_game *game);
 bool	handle_ceiling(t_game *game);
 char	*get_next_line(int fd);
-void	free_error_exit(t_game *game);
 int		line_len(char *str);
 void	check_zero(char **lines, t_game *game);
 void	check_map(char **lines, t_game *game);
@@ -152,5 +152,10 @@ int		create_color(int r, int g, int b);
 int		texture_index(t_game *game);
 int		close_window(t_game *game);
 void	find_vector(t_game *game);
+int		cleanup(t_game *game);
+void	free_lines(char **lines);
+void	continue_init_mlx(t_game *game);
+void	validate_wall(t_game *game, int y, char c, char *side);
+void	free_array(char **array);
 
 #endif

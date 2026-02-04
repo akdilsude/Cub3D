@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 14:13:50 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 21:54:40 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:56:54 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,12 @@ void	move_a_d(t_game *game, int direction)
 		game->player_x = new_x;
 	if (game->map[(int)new_y][(int)game->player_x] != '1')
 		game->player_y = new_y;
+}
+
+int	close_window(t_game *game)
+{
+	printf("Exiting the game...\n");
+	cleanup(game);
+	exit(0);
+	return (0);
 }

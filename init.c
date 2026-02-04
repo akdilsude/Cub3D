@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 13:31:48 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 21:47:55 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:36:21 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void	init_mlx(t_game *game)
 	if (!game->mlx)
 	{
 		printf("Error\nMLX build failed.\n");
-		free_error_exit(game);
+		cleanup(game);
+		exit(1);
 	}
 	game->win_x = WINDOW_WIDTH;
 	game->win_y = WINDOW_HEIGHT;
@@ -26,23 +27,16 @@ static void	init_mlx(t_game *game)
 	if (!game->win)
 	{
 		printf("Error\nFailed to create window.\n");
-		free_error_exit(game);
+		cleanup(game);
+		exit(1);
 	}
-	game->image.img = mlx_new_image(game->mlx, game->win_x, game->win_y);
-	if (!game->image.img)
-	{
-		printf("Error\nFailed to create image.\n");
-		free_error_exit(game);
-	}
-	game->image.pixels = mlx_get_data_addr(game->image.img,
-			&game->image.bits_per_pixel, &game->image.line_len,
-			&game->image.byte_order);
+	continue_init_mlx(game);
 }
 
 static int	key_press(int keycode, t_game *game)
 {
 	if (keycode == 65307)
-		exit(0);
+		close_window(game);
 	if (keycode == 119)
 		game->key_w = 1;
 	if (keycode == 115)

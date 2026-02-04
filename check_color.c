@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:18:20 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 22:19:46 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/05 00:00:37 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,14 @@ static int	check_color_number(char **rgb)
 		{
 			if (!ft_isdigit(rgb[i][j]))
 			{
-				printf("invalid character");
+				printf("Error\nRGB values must contain only digit.\n");
 				return (-1);
 			}
 			j++;
 		}
 		if (ft_atoi(rgb[i]) < 0 || ft_atoi(rgb[i]) > 255)
 		{
-			printf("invalid number");
+			printf("Error\nRGB color value out of range (0-255).\n");
 			return (-1);
 		}
 		i++;
@@ -108,20 +108,22 @@ int	check_color(char *line, t_game *game)
 
 	clean_str = clean_color_line(line);
 	if (!clean_str)
-		return (printf("Error\nMalloc failed\n"), -1);
+		return (printf("Error\nMalloc failed.\n"), -1);
 	rgb = ft_split(clean_str, ',');
 	free(clean_str);
 	if (!rgb)
-		return (printf("Error\nSplit failed\n"), -1);
+		return (printf("Error\nSplit failed.\n"), -1);
 	count = 0;
 	while (rgb[count])
 		count++;
-	if (count != 3 || check_color_number(rgb) == -1)
+	if (count != 3)
 	{
-		printf("Error\nInvalid color format\n");
+		printf("Error\nInvalid color format (must be 3 values).\n");
 		free_tab(rgb);
 		return (-1);
 	}
+	if (check_color_number(rgb) == -1)
+		return (free_tab(rgb), -1);
 	assign_colors(game, rgb, line[0]);
 	free_tab(rgb);
 	return (0);

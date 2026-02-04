@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:00:10 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 22:06:41 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:54:07 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,23 @@ static int	read_file(int fd, t_game *game, char ***lines)
 	game->line_count = count;
 	if (count == 0)
 	{
-		free(*lines);
-		printf("Error\nEmpty file\n");
+		printf("Error\nEmpty file.\n");
 		return (-1);
 	}
 	return (0);
 }
 
-static void	error_msg_player(int count, t_game *game)
+static void	error_msg_player(int count)
 {
 	if (count != 1)
 	{
 		if (count == 0)
 		{
 			printf("Error\nNo player start (N/S/W/E) found.\n");
-			free_error_exit(game);
 		}
 		else
 		{
 			printf("Error\nMultiple player starts (N/S/W/E) found.\n");
-			free_error_exit(game);
 		}
 	}
 }
@@ -83,7 +80,7 @@ static void	player_is_one(char **line, t_game *game)
 		}
 		y++;
 	}
-	error_msg_player(count, game);
+	error_msg_player(count);
 	find_vector(game);
 }
 
@@ -92,7 +89,8 @@ static void	process_map(char **lines, t_game *game)
 	game->map_start = control_identifier(lines, game);
 	if (game->map_start < 0)
 	{
-		return ;
+		cleanup(game);
+		exit(1);
 	}
 	tabs_in_map(lines, game);
 	check_map_end(lines, game);
@@ -111,17 +109,26 @@ void	open_map(char *argv, t_game *game)
 	int		fd;
 	char	**lines;
 
+	name_control(argv);
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
 	{
 		printf("Error\nCannot open map file.\n");
-		free_error_exit(game);
+		cleanup(game);
+		exit(1);
 	}
 	if (read_file(fd, game, &lines) == -1)
 	{
 		if (game->line_count == 0)
-			free_error_exit(game);
+		{
+			cleanup(game);
+			exit(1);
+		}
 		return ;
 	}
+	game->tmp_lines = lines;
 	process_map(lines, game);
+	free_array(game->tmp_lines);
+	free_lines(lines);
+	game->tmp_lines = NULL;
 }

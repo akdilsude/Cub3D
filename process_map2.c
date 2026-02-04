@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 14:46:26 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 21:50:03 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:42:55 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,10 @@ static void	continue_side_walls(char **lines, t_game *game, int y)
 		len--;
 	if (i < len)
 	{
-		if (row[i] != '1')
+		if (i < len)
 		{
-			printf("Error\nLeft edge not closed at y=%d\n", y + 1);
-			free_error_exit(game);
-		}
-		if (row[len - 1] != '1')
-		{
-			printf("Error\nRight edge not closed at y=%d\n", y + 1);
-			free_error_exit(game);
+			validate_wall(game, y, row[i], "Left");
+			validate_wall(game, y, row[len - 1], "Right");
 		}
 	}
 }
@@ -56,13 +51,15 @@ static void	error_check_map(char c, t_game *game)
 {
 	if (c == '\t')
 	{
-		printf("Error\nTab var\n");
-		free_error_exit(game);
+		printf("Error\nFound tab on the map\n");
+		cleanup(game);
+		exit(1);
 	}
 	if (!is_map_char(c))
 	{
 		printf("Error\nInvalid character '%c'.\n", c);
-		free_error_exit(game);
+		cleanup(game);
+		exit(1);
 	}
 }
 
@@ -96,16 +93,18 @@ char	**build_map(char **line, t_game *game)
 	game->map = (char **)malloc(sizeof(char *) * (game->y + 1));
 	if (!game->map)
 	{
-		printf("Error\nFailed map.\n");
-		free_error_exit(game);
+		printf("Error\nMalloc failed for map array.\n");
+		cleanup(game);
+		exit(1);
 	}
 	while (y < game->y)
 	{
 		game->map[y] = ft_strdup(line[game->map_start + y]);
 		if (!game->map[y])
 		{
-			printf("Error\nFailed map.\n");
-			free_error_exit(game);
+			printf("Error\nMalloc failed for map line.\n");
+			cleanup(game);
+			exit(1);
 		}
 		y++;
 	}

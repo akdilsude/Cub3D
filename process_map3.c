@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 16:35:26 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 22:26:05 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:06:57 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	name_control(char *str)
 		|| (ft_strcmp(str + i, ".cub") != 0))
 	{
 		printf("Error\nInvalid map file extension.\n");
+		exit(1);
 	}
 }
 
@@ -40,23 +41,19 @@ static void	check_surround(char **lines, int x, int y, t_game *game)
 		|| lines[game->map_start + y - 1][x] == ' ' )
 	{
 		printf("Error\nMap not closed (above).\n");
-		free_error_exit(game);
 	}
 	if (y == game->y - 1 || x >= line_len(lines[game->map_start + y + 1])
 		|| lines[game->map_start + y + 1][x] == ' ')
 	{
 		printf("Error\nMap not closed (below).\n");
-		free_error_exit(game);
 	}
 	if (x == 0 || lines[game->map_start + y][x - 1] == ' ')
 	{
 		printf("Error\nMap not closed (left).\n");
-		free_error_exit(game);
 	}
 	if (x + 1 >= curr_len || lines[game->map_start + y][x + 1] == ' ')
 	{
 		printf("Error\nMap not closed (right).\n");
-		free_error_exit(game);
 	}
 }
 
