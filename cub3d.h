@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2026/02/04 23:56:15 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/16 00:44:52 by segunes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	open_map(char *argv, t_game *game);
 void	tabs_in_map(char **lines, t_game *game);
 void	check_map_end(char **lines, t_game *game);
 void	empty_line_inside_map(char **lines, t_game *game);
-void	name_control(char *str);
+void	name_control(char *str, t_game *list);
 void	game_edit(t_game *list);
 int		is_only_spaces(char *str);
 char	**build_map(char **line, t_game *game);

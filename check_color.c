@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:18:20 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/05 00:00:37 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/16 02:51:01 by segunes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	check_color_number(char **rgb)
 	{
 		j = 0;
 		while (rgb[i][j] != '\0')
-		{
+		{		
 			if (!ft_isdigit(rgb[i][j]))
 			{
 				printf("Error\nRGB values must contain only digit.\n");
@@ -105,10 +105,26 @@ int	check_color(char *line, t_game *game)
 	char	*clean_str;
 	char	**rgb;
 	int		count;
-
+	int 	i;
+	int		count_comma;
+	
+	i = 0;
+	count_comma=0;
 	clean_str = clean_color_line(line);
 	if (!clean_str)
 		return (printf("Error\nMalloc failed.\n"), -1);
+	while(clean_str[i] != '\0')
+	{
+		if(clean_str[i] == ',')
+			count_comma += 1;
+		i++;
+	}
+	if(count_comma != 2)
+	{
+		printf("Error\nInvalid comma count in RGB.\n");
+        free(clean_str);
+        exit(1);
+	}
 	rgb = ft_split(clean_str, ',');
 	free(clean_str);
 	if (!rgb)

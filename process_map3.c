@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   process_map3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 16:35:26 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 23:06:57 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/16 01:57:23 by segunes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	name_control(char *str)
+void	name_control(char *str,t_game *list)
 {
 	int	i;
 
@@ -28,6 +28,7 @@ void	name_control(char *str)
 		|| (ft_strcmp(str + i, ".cub") != 0))
 	{
 		printf("Error\nInvalid map file extension.\n");
+		cleanup(list);
 		exit(1);
 	}
 }
@@ -41,19 +42,27 @@ static void	check_surround(char **lines, int x, int y, t_game *game)
 		|| lines[game->map_start + y - 1][x] == ' ' )
 	{
 		printf("Error\nMap not closed (above).\n");
+		cleanup(game);
+		exit(1);
 	}
 	if (y == game->y - 1 || x >= line_len(lines[game->map_start + y + 1])
 		|| lines[game->map_start + y + 1][x] == ' ')
 	{
 		printf("Error\nMap not closed (below).\n");
+		cleanup(game);
+		exit(1);		
 	}
 	if (x == 0 || lines[game->map_start + y][x - 1] == ' ')
 	{
 		printf("Error\nMap not closed (left).\n");
+		cleanup(game);
+		exit(1);
 	}
 	if (x + 1 >= curr_len || lines[game->map_start + y][x + 1] == ' ')
 	{
 		printf("Error\nMap not closed (right).\n");
+		cleanup(game);
+		exit(1);
 	}
 }
 
