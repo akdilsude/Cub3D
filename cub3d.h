@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2026/02/16 00:44:52 by segunes          ###   ########.fr       */
+/*   Updated: 2026/02/22 14:30:16 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,6 @@ void	free_lines(char **lines);
 void	continue_init_mlx(t_game *game);
 void	validate_wall(t_game *game, int y, char c, char *side);
 void	free_array(char **array);
+void	check_mult_maps(t_game *game);
 
 #endif

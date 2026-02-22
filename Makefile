@@ -17,6 +17,7 @@ SRCS			=	control_identifier.c	\
 					raycasting.c			\
 					movement.c				\
 					vertical_line.c			\
+					flood_fill.c			\
 
 
 OBJS			=	$(SRCS:.c=.o)
