@@ -1,43 +1,36 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   process_map3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 16:35:26 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/16 16:01:27 by segunes          ###   ########.fr       */
+/*   Updated: 2026/02/22 16:08:42 by sakdil           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	name_control(char *str,t_game *list)
+static void	continue_check_surround(char **lines, int x, int y, t_game *game)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (x == 0 || lines[game->map_start + y][x - 1] == ' ')
 	{
-		if (str[i] != '.')
-			i++;
-		else
-			break ;
+		printf("Error\nMap not closed (left).\n");
+		cleanup(game);
+		exit(1);
 	}
-	if ((str[i] == '.' && str[i - 1] == '/')
-		|| (ft_strcmp(str + i, ".cub") != 0))
+	if (x + 1 >= game->curr_len || lines[game->map_start + y][x + 1] == ' ')
 	{
-		printf("Error\nInvalid map file extension.\n");
-		cleanup(list);
+		printf("Error\nMap not closed (right).\n");
+		cleanup(game);
 		exit(1);
 	}
 }
 
 static void	check_surround(char **lines, int x, int y, t_game *game)
 {
-	int	curr_len;
-
-	curr_len = line_len(lines[game->map_start + y]);
+	game->curr_len = line_len(lines[game->map_start + y]);
 	if (y == 0 || x >= line_len(lines[game->map_start + y - 1])
 		|| lines[game->map_start + y - 1][x] == ' ' )
 	{
@@ -50,35 +43,23 @@ static void	check_surround(char **lines, int x, int y, t_game *game)
 	{
 		printf("Error\nMap not closed (below).\n");
 		cleanup(game);
-		exit(1);		
-	}
-	if (x == 0 || lines[game->map_start + y][x - 1] == ' ')
-	{
-		printf("Error\nMap not closed (left).\n");
-		cleanup(game);
 		exit(1);
 	}
-	if (x + 1 >= curr_len || lines[game->map_start + y][x + 1] == ' ')
-	{
-		printf("Error\nMap not closed (right).\n");
-		cleanup(game);
-		exit(1);
-	}
+	continue_check_surround(lines, x, y, game);
 }
 
 void	check_zero(char **lines, t_game *game)
 {
 	int		x;
 	int		y;
-	int		curr_len;
 	char	c;
 
 	y = 0;
 	while (y < game->y)
 	{
 		x = 0;
-		curr_len = line_len(lines[game->map_start + y]);
-		while (x < curr_len)
+		game->curr_len = line_len(lines[game->map_start + y]);
+		while (x < game->curr_len)
 		{
 			c = lines[game->map_start + y][x];
 			if (c == '0' || check_nsew(c))

@@ -1,15 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:18:20 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/22 14:52:15 by segunes          ###   ########.fr       */
+/*   Updated: 2026/02/22 15:54:33 by sakdil           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
-
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -63,16 +62,6 @@ static void	assign_colors(t_game *game, char **rgb, char type)
 	}
 }
 
-static void	free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
-}
-
 static int	check_color_number(char **rgb)
 {
 	int	i;
@@ -83,7 +72,7 @@ static int	check_color_number(char **rgb)
 	{
 		j = 0;
 		while (rgb[i][j] != '\0')
-		{		
+		{
 			if (!ft_isdigit(rgb[i][j]))
 			{
 				printf("Error\nRGB values must contain only digit.\n");
@@ -101,32 +90,12 @@ static int	check_color_number(char **rgb)
 	return (0);
 }
 
-int	check_color(char *line, t_game *game)
+int	continue_check_color(t_game *game, char *clean_str, char *line)
 {
-	char	*clean_str;
-	char	**rgb;
 	int		count;
-	int 	i;
-	int		count_comma;
-	
-	i = 0;
-	count_comma=0;
-	clean_str = clean_color_line(line);
-	if (!clean_str)
-		return (printf("Error\nMalloc failed.\n"), -1);
-	while(clean_str[i] != '\0')
-	{
-		if(clean_str[i] == ',')
-			count_comma += 1;
-		i++;
-	}
-	if(count_comma != 2)
-	{
-		printf("Error\nInvalid comma count in RGB.\n");
-        free(clean_str);
-		cleanup(game);
-        exit(1);
-	}
+	char	**rgb;
+
+	count = 0;
 	rgb = ft_split(clean_str, ',');
 	free(clean_str);
 	if (!rgb)
@@ -145,4 +114,31 @@ int	check_color(char *line, t_game *game)
 	assign_colors(game, rgb, line[0]);
 	free_tab(rgb);
 	return (0);
+}
+
+int	check_color(char *line, t_game *game)
+{
+	char	*clean_str;
+	int		i;
+	int		count_comma;
+
+	i = 0;
+	count_comma = 0;
+	clean_str = clean_color_line(line);
+	if (!clean_str)
+		return (printf("Error\nMalloc failed.\n"), -1);
+	while (clean_str[i] != '\0')
+	{
+		if (clean_str[i] == ',')
+			count_comma += 1;
+		i++;
+	}
+	if (count_comma != 2)
+	{
+		printf("Error\nInvalid comma count in RGB.\n");
+		free(clean_str);
+		cleanup(game);
+		exit(1);
+	}
+	return (continue_check_color(game, clean_str, line));
 }

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2026/02/22 14:43:49 by segunes          ###   ########.fr       */
+/*   Updated: 2026/02/22 16:06:57 by sakdil           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -110,6 +110,7 @@ typedef struct s_game
 	t_ray		ray;
 	t_image		textures[4];
 	t_image		image;
+	int			curr_len;
 }	t_game;
 
 char	*find_path(char *input);
@@ -158,5 +159,6 @@ void	continue_init_mlx(t_game *game);
 void	validate_wall(t_game *game, int y, char c, char *side);
 void	free_array(char **array);
 void	check_mult_maps(t_game *game);
+void	free_tab(char **tab);
 
 #endif

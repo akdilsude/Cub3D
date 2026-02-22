@@ -10,6 +10,7 @@ SRCS			=	control_identifier.c	\
 					process_map.c 			\
 					process_map2.c 			\
 					process_map3.c 			\
+					process_map4.c 			\
 					utils.c					\
 					init.c					\
 					utils2.c				\

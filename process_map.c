@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:33:03 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 23:09:42 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/22 16:11:34 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	check_map_end(char **lines, t_game *game)
 	{
 		if (!is_only_spaces(lines[i]))
 		{
-			printf("Error\nNothing is allowed after the map.\n");
+			printf("Error\nNothing is allowed after or before the map.\n");
 			cleanup(game);
 			exit(1);
 		}

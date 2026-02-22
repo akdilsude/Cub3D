@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:00:10 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/22 14:44:09 by segunes          ###   ########.fr       */
+/*   Updated: 2026/02/22 15:09:18 by sakdil           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -85,7 +85,7 @@ static void	player_is_one(char **line, t_game *game)
 		}
 		y++;
 	}
-	error_msg_player(count,game);
+	error_msg_player(count, game);
 	find_vector(game);
 }
 
@@ -115,7 +115,7 @@ void	open_map(char *argv, t_game *game)
 	int		fd;
 	char	**lines;
 
-	name_control(argv,game);
+	name_control(argv, game);
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
 	{
@@ -135,6 +135,5 @@ void	open_map(char *argv, t_game *game)
 	game->tmp_lines = lines;
 	process_map(lines, game);
 	free_array(game->tmp_lines);
-	// double free olmasına sebebiyet veriyor free_lines(lines);
 	game->tmp_lines = NULL;
 }
