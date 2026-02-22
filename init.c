@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 13:31:48 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 23:36:21 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/22 14:40:37 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -23,7 +23,7 @@ static void	init_mlx(t_game *game)
 	}
 	game->win_x = WINDOW_WIDTH;
 	game->win_y = WINDOW_HEIGHT;
-	game->win = mlx_new_window(game->mlx, game->win_x, game->win_y, "Cub3d");
+	game->win = mlx_new_window(game->mlx, game->win_x, game->win_y, "cub3D");
 	if (!game->win)
 	{
 		printf("Error\nFailed to create window.\n");

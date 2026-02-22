@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   control_identifier.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 18:44:09 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 22:25:25 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/22 14:27:39 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -35,7 +35,10 @@ static int	handle_direct(char *line, t_game *game)
 			return (-1);
 	}
 	else
+	{
+		printf("Error.\nUndefined name.\n");	
 		return (-1);
+	}
 	return (1);
 }
 
@@ -56,7 +59,10 @@ static int	handle_color(char *line, t_game *game)
 			return (-1);
 	}
 	else
+	{
+		printf("Error.\nUndefined name.\n");
 		return (-1);
+	}
 	return (1);
 }
 
