@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil < sakdil@student.42istanbul.com.    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:53:07 by segunes           #+#    #+#             */
-/*   Updated: 2025/10/10 22:36:59 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/22 17:14:49 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static char	*validate_path(char *path)
 {
 	int	len;
+	int	fd;
 
 	if (!path)
 		return (NULL);
@@ -24,8 +25,10 @@ static char	*validate_path(char *path)
 	if (!(path[len - 4] == '.' && path[len - 3] == 'x'
 			&& path[len - 2] == 'p' && path[len - 1] == 'm'))
 		return (NULL);
-	if (access(path, F_OK | R_OK) != 0)
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
 		return (NULL);
+	close(fd);
 	return (path);
 }
 
