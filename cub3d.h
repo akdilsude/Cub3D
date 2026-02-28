@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2026/02/22 16:06:57 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/28 13:12:00 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ int		raycasting(t_game *game);
 void	rotate_player(t_game *game, int i);
 void	move_w_s(t_game *game, int direction);
 void	move_a_d(t_game *game, int direction);
-int		create_color(int r, int g, int b);
 int		texture_index(t_game *game);
 int		close_window(t_game *game);
 void	find_vector(t_game *game);

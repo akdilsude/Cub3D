@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_map2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 14:46:26 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 23:42:55 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/28 13:16:23 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,8 @@ static void	continue_side_walls(char **lines, t_game *game, int y)
 		len--;
 	if (i < len)
 	{
-		if (i < len)
-		{
-			validate_wall(game, y, row[i], "Left");
-			validate_wall(game, y, row[len - 1], "Right");
-		}
+		validate_wall(game, y, row[i], "Left");
+		validate_wall(game, y, row[len - 1], "Right");
 	}
 }
 

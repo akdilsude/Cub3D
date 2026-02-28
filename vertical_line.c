@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 21:14:41 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 21:48:49 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/02/28 14:54:23 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	draw_wall_texture(t_game *game, int x, int tex_i, int tex_x)
 	tex_pos = (game->ray.draw_start - game->win_y / 2
 			+ game->ray.line_height / 2) * step;
 	y = game->ray.draw_start;
-	while (y < game->ray.draw_end)
+	while (y <= game->ray.draw_end)
 	{
 		color = get_tex_color(game, tex_i, tex_x, tex_pos);
 		pixel_put(game, x, y, color);
@@ -88,7 +88,7 @@ void	draw_vertical_line(t_game *game, int x)
 	tex_i = texture_index(game);
 	tex_x = get_tex_x(game, tex_i);
 	draw_wall_texture(game, x, tex_i, tex_x);
-	y = game->ray.draw_end;
+	y = game->ray.draw_end + 1;
 	while (y < game->win_y)
 	{
 		pixel_put(game, x, y, create_color(game->floor_r,
