@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:36:17 by sakdil            #+#    #+#             */
-/*   Updated: 2026/03/01 12:30:07 by segunes          ###   ########.fr       */
+/*   Updated: 2026/03/01 12:44:14 by sakdil           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -71,11 +71,8 @@ static void	search_for_wall(t_game *game)
 		if (game->ray.map_y < 0 || game->ray.map_y >= game->y
 			|| game->ray.map_x < 0 || game->ray.map_x
 			>= (int)ft_strlen(game->map[game->ray.map_y]))
-			{
-				game->ray.has_hit = 1;
-				break ;
-			}
-			if (game->map[game->ray.map_y][game->ray.map_x] == '1')
+			break ;
+		if (game->map[game->ray.map_y][game->ray.map_x] == '1')
 			game->ray.has_hit = 1;
 	}
 }
