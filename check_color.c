@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:18:20 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/23 11:09:53 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/03/01 10:52:16 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	continue_check_color(t_game *game, char *clean_str, char *line)
 	free(clean_str);
 	if (!rgb)
 		return (printf("Error\nSplit failed.\n"), -1);
-	count = 0;
 	while (rgb[count])
 		count++;
 	if (count != 3)
