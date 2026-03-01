@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 13:31:48 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/28 15:48:50 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/03/01 06:32:09 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	game_start(t_game *game)
 	game->key_right = 0;
 	init_mlx(game);
 	load_textures(game);
-	mlx_hook(game->win, 2, 1L << 0, key_press, game);
-	mlx_hook(game->win, 3, 1L << 1, key_release, game);
+	mlx_hook(game->win, 2, 1, key_press, game);
+	mlx_hook(game->win, 3, 2, key_release, game);
 	mlx_hook(game->win, 17, 0, close_window, game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_loop(game->mlx);

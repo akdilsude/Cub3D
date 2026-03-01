@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:00:10 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/22 15:09:18 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/03/01 05:14:52 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,12 +125,8 @@ void	open_map(char *argv, t_game *game)
 	}
 	if (read_file(fd, game, &lines) == -1)
 	{
-		if (game->line_count == 0)
-		{
-			cleanup(game);
-			exit(1);
-		}
-		return ;
+		cleanup(game);
+		exit(1);
 	}
 	game->tmp_lines = lines;
 	process_map(lines, game);
