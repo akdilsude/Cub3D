@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:00:10 by sakdil            #+#    #+#             */
-/*   Updated: 2026/03/01 05:14:52 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/03/01 12:02:04 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -77,8 +77,8 @@ static void	player_is_one(char **line, t_game *game)
 					|| line[y][x] == 'W' || line[y][x] == 'E')
 			{
 				count++;
-				game->player_x = x;
-				game->player_y = y - game->map_start;
+				game->player_x = x + 0.5;
+				game->player_y = (y - game->map_start) + 0.5;
 				game->player_direc = line[y][x];
 			}
 			x++;

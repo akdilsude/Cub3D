@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 14:13:50 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/28 15:29:23 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/03/01 12:11:08 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -36,11 +36,13 @@ void	move_w_s(t_game *game, int direction)
 
 	new_x = game->player_x + (game->vec_x * MOVE_SPEED * direction);
 	new_y = game->player_y + (game->vec_y * MOVE_SPEED * direction);
-	if (game->map[(int)game->player_y][(int)(new_x + 0.4)] != '1'
-		&& game->map[(int)game->player_y][(int)(new_x - 0.4)] != '1')
+	if ((int)new_x >= 0 && (int)new_y >= 0 && (int)new_y < game->y
+		&& (int)new_x < (int)ft_strlen(game->map[(int)new_y])
+		&& game->map[(int)game->player_y][(int)new_x] != '1')
 		game->player_x = new_x;
-	if (game->map[(int)(new_y + 0.4)][(int)game->player_x] != '1'
-		&& game->map[(int)(new_y - 0.4)][(int)game->player_x] != '1')
+	if ((int)new_x >= 0 && (int)new_y >= 0 && (int)new_y < game->y
+		&& (int)game->player_x < (int)ft_strlen(game->map[(int)new_y])
+		&& game->map[(int)new_y][(int)game->player_x] != '1')
 		game->player_y = new_y;
 }
 
@@ -51,11 +53,13 @@ void	move_a_d(t_game *game, int direction)
 
 	new_x = game->player_x + (game->plane_x * MOVE_SPEED * direction);
 	new_y = game->player_y + (game->plane_y * MOVE_SPEED * direction);
-	if (game->map[(int)game->player_y][(int)(new_x + 0.4)] != '1'
-		&& game->map[(int)game->player_y][(int)(new_x - 0.4)] != '1')
+	if ((int)new_x >= 0 && (int)new_y >= 0 && (int)new_y < game->y
+		&& (int)new_x < (int)ft_strlen(game->map[(int)game->player_y])
+		&& game->map[(int)game->player_y][(int)new_x] != '1')
 		game->player_x = new_x;
-	if (game->map[(int)(new_y + 0.4)][(int)game->player_x] != '1'
-		&& game->map[(int)(new_y - 0.4)][(int)game->player_x] != '1')
+	if ((int)new_x >= 0 && (int)new_y >= 0 && (int)new_y < game->y
+		&& (int)game->player_x < (int)ft_strlen(game->map[(int)new_y])
+		&& game->map[(int)new_y][(int)game->player_x] != '1')
 		game->player_y = new_y;
 }
 

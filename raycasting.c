@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: segunes <segunes@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:36:17 by sakdil            #+#    #+#             */
-/*   Updated: 2026/02/04 21:58:31 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/03/01 12:30:07 by segunes          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -71,8 +71,11 @@ static void	search_for_wall(t_game *game)
 		if (game->ray.map_y < 0 || game->ray.map_y >= game->y
 			|| game->ray.map_x < 0 || game->ray.map_x
 			>= (int)ft_strlen(game->map[game->ray.map_y]))
-			break ;
-		if (game->map[game->ray.map_y][game->ray.map_x] == '1')
+			{
+				game->ray.has_hit = 1;
+				break ;
+			}
+			if (game->map[game->ray.map_y][game->ray.map_x] == '1')
 			game->ray.has_hit = 1;
 	}
 }
@@ -94,6 +97,10 @@ static void	calc_wall_height(t_game *game)
 	game->ray.draw_end = game->ray.line_height / 2 + game->win_y / 2;
 	if (game->ray.draw_end >= game->win_y)
 		game->ray.draw_end = game->win_y - 1;
+	if (game->ray.draw_end >= game->win_y)
+		game->ray.draw_end = game->win_y - 1;
+	if (game->ray.draw_end < game->ray.draw_start)
+		game->ray.draw_end = game->ray.draw_start;
 }
 
 int	raycasting(t_game *game)
