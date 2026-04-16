@@ -6,19 +6,19 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2026/02/28 13:12:00 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/04/16 14:35:21 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "libft/libft.h"
+# include "libft.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h> 
 # include <stdbool.h>
-# include "minilibx-linux/mlx.h"
+# include "mlx.h"
 # include <math.h>
 
 # ifndef BUFFER_SIZE
@@ -27,8 +27,8 @@
 
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
-# define MOVE_SPEED 0.02
-# define ROT_SPEED 0.01
+# define MOVE_SPEED 0.03
+# define ROT_SPEED 0.02
 
 typedef struct s_control
 {

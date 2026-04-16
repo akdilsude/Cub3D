@@ -1,5 +1,9 @@
 NAME			=	cub3D
-SRCS			=	control_identifier.c	\
+
+SRCS_DIR		=	srcs
+INC_DIR			=	inc
+
+SRCS_FILES		=	control_identifier.c	\
 					frees.c					\
 					get_next_line.c			\
 					check_color.c 			\
@@ -20,11 +24,13 @@ SRCS			=	control_identifier.c	\
 					vertical_line.c			\
 					flood_fill.c			\
 
-
+SRCS            =   $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 OBJS			=	$(SRCS:.c=.o)
+
 RM				=	rm -f
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
 CC				=	cc
+
 LIBFT_DIR		= 	./libft
 LIBFT 			= 	$(LIBFT_DIR)/libft.a
 MINILIBX_DIR	=	minilibx-linux
@@ -32,7 +38,7 @@ MINILIBX 		=	$(MINILIBX_DIR)/libmlx.a
 LFLAGS 			=	-Lminilibx-linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
 
 
-all: $(LIBFT) $(NAME)
+all: $(LIBFT) $(MINILIBX) $(NAME)
 
 $(MINILIBX):
 	@make -C $(MINILIBX_DIR)
