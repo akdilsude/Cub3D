@@ -20,7 +20,7 @@ The project is compiled using a standard `Makefile`. It requires `cc` and the mi
 
 1. Clone the repository:
 ```bash
-git clone [https://github.com/yourusername/cub3d.git](https://github.com/yourusername/cub3d.git)
+git clone [https://github.com/akdilsude/Cub3D](https://github.com/akdilsude/Cub3D)
 cd cub3d
 ```
 
