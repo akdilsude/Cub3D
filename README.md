@@ -22,7 +22,8 @@ The project is compiled using a standard `Makefile`. It requires `cc` and the mi
 
 1. Clone the repository:
 ```bash
-git clone --recursive [https://github.com/akdilsude/Cub3D](https://github.com/akdilsude/Cub3D)
+git clone --recursive https://github.com/akdilsude/Cub3D
+cd cub3d
 cd cub3d
 ```
 
