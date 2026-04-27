@@ -1,6 +1,8 @@
 # cub3D - 3D Raycasting Engine in C
 
-![cub3D Gameplay Demo](docs/demo.gif)
+<p align="center">
+  <img src="assets/preview.gif" alt="cub3D Gameplay" width="750"/>
+</p>
 
 ## Overview
 **cub3D** is a custom-built 3D first-person game engine developed entirely in **C**. Inspired by the pioneering mechanics of the 90s classic *Wolfenstein 3D*, this project explores the mathematical fundamentals of 2D to 3D projection without relying on modern, pre-built game engines. 
@@ -16,11 +18,11 @@ It utilizes the **Raycasting** technique and the **Digital Differential Analyzer
 
 ## Installation & Compilation
 
-The project is compiled using a standard `Makefile`. It requires `cc` and the miniLibX graphics library dependencies (X11 and Xext on Linux).
+The project is compiled using a standard `Makefile`. It requires `cc` and the miniLibX graphics library dependencies.
 
 1. Clone the repository:
 ```bash
-git clone [https://github.com/akdilsude/Cub3D](https://github.com/akdilsude/Cub3D)
+git clone --recursive [https://github.com/akdilsude/Cub3D](https://github.com/akdilsude/Cub3D)
 cd cub3d
 ```
 

@@ -24,18 +24,18 @@ SRCS_FILES		=	control_identifier.c	\
 					vertical_line.c			\
 					flood_fill.c			\
 
-SRCS            =   $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
+SRCS			=	$(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 OBJS			=	$(SRCS:.c=.o)
 
 RM				=	rm -f
 CFLAGS			=	-Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
 CC				=	cc
 
-LIBFT_DIR		= 	./libft
-LIBFT 			= 	$(LIBFT_DIR)/libft.a
+LIBFT_DIR		=	./libft
+LIBFT			=	$(LIBFT_DIR)/libft.a
 MINILIBX_DIR	=	minilibx-linux
-MINILIBX 		=	$(MINILIBX_DIR)/libmlx.a
-LFLAGS 			=	-Lminilibx-linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
+MINILIBX		=	$(MINILIBX_DIR)/libmlx.a
+LFLAGS			=	-Lminilibx-linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
 
 
 all: $(LIBFT) $(MINILIBX) $(NAME)
@@ -49,7 +49,7 @@ $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
-clean: 
+clean:
 	$(RM) $(OBJS)
 	@make -C $(LIBFT_DIR) clean
 

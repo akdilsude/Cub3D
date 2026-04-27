@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:01:46 by segunes           #+#    #+#             */
-/*   Updated: 2026/04/16 14:35:21 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/04/27 20:55:26 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
-# define MOVE_SPEED 0.03
-# define ROT_SPEED 0.02
+# define MOVE_SPEED 0.02
+# define ROT_SPEED 0.01
 
 typedef struct s_control
 {

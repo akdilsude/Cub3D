@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakdil <sakdil@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 14:13:50 by sakdil            #+#    #+#             */
-/*   Updated: 2026/03/01 12:38:15 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/04/27 11:27:56 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	rotate_player(t_game *game, int i)
 	double	old_plane_x;
 	double	rot_speed;
 
-	rot_speed = ROT_SPEED * i;
+	rot_speed = ROT_SPEED * -i;
 	old_dir_x = game->vec_x;
 	game->vec_x = game->vec_x * cos(rot_speed) - game->vec_y * sin(rot_speed);
 	game->vec_y = old_dir_x * sin(rot_speed) + game->vec_y * cos(rot_speed);
