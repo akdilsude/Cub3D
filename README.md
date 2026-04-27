@@ -24,7 +24,6 @@ The project is compiled using a standard `Makefile`. It requires `cc` and the mi
 ```bash
 git clone --recursive https://github.com/akdilsude/Cub3D
 cd cub3d
-cd cub3d
 ```
 
 2. Compile the executable:
