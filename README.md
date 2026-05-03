@@ -42,8 +42,8 @@ To launch the engine, you must provide a valid map file (`.cub`) as an argument.
 ### Controls
 * **W** : Move Forward
 * **S** : Move Backward
-* **A** : Strafe Left
-* **D** : Strafe Right
+* **A** : Move Left
+* **D** : Move Right
 * **Left Arrow** : Rotate Camera Left
 * **Right Arrow** : Rotate Camera Right
 * **ESC** : Exit the game cleanly
