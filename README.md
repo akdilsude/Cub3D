@@ -51,17 +51,17 @@ To launch the engine, you must provide a valid map file (`.cub`) as an argument.
 ## Directory Structure
 ```text
 cub3D/
-├── srcs/         # Core engine logic, rendering, and parsing files
-├── inc/          # Header files
-├── maps/         # Configuration files (.cub)
-│   ├── valid/    # Playable environments
-│   └── invalid/  # Maps designed to test error handling and edge cases
-├── textures/     # Wall texture assets (.xpm)
-├── libft/        # Custom standard C library implementation
+├── srcs/           # Core engine logic, rendering, and parsing files
+├── inc/            # Header files
+├── maps/           # Configuration files (.cub)
+│   ├── valid/      # Playable environments
+│   └── invalid/    # Maps designed to test error handling and edge cases
+├── textures/       # Wall texture assets (.xpm)
+├── libft/          # Custom standard C library implementation
 ├── minilibx-linux/ # Git Submodule: miniLibX graphics library
 ├── .gitmodules     # Submodule configuration file
-├── Makefile      # Build automation
-└── README.md     # Project documentation
+├── Makefile        # Build automation
+└── README.md       # Project documentation
 ```
 
 ## Architecture
